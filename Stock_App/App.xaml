@@ -1,0 +1,23 @@
+﻿<Application x:Class="Stock_App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Stock_App"
+             xmlns:viewModel="clr-namespace:Stock_App.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Stock_App.MVVM.View">
+
+    <Application.Resources>
+    <DataTemplate DataType="{x:Type TypeName=viewModel:HomeViewModel}">
+        <view:HomeView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type TypeName=viewModel:ProfileViewModel}">
+        <view:ProfileView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type TypeName=viewModel:PortoflioViewModel}">
+          <view:PortfolioView/>
+    </DataTemplate>
+        
+    </Application.Resources>
+
+</Application>

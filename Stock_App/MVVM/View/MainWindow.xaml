@@ -1,0 +1,63 @@
+﻿<Window x:Class="Stock_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:Stock_App"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="760" Width="1280" WindowStartupLocation="CenterScreen" 
+        Background="#151f2d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Separator Height="80" Background="Transparent"/>
+
+            <Button Command="{Binding Path=NavigateToHomeCommand}" 
+                    ToolTip="Home" 
+                    Style="{DynamicResource buttonstyle}"
+                    Background="Transparent"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <mah:PackIconModern Width="50" Height="50" Kind="Home"/>
+            </Button>
+
+            <Separator Height="20" Background="Transparent"/>
+
+            <Button Command="{Binding Path=NavigateToPortfolioCommand}" 
+                    ToolTip="Portoflio" 
+                    Style="{DynamicResource buttonstyle}"
+                    Background="Transparent"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <mah:PackIconBootstrapIcons Width="50" Height="50" Kind="BarChartLine"/>
+            </Button>
+
+            <Separator Height="20" Background="Transparent"/>
+
+            <Button Command="{Binding Path=NavigateToProfileCommand}" 
+                    ToolTip="Profile" 
+                    Style="{DynamicResource buttonstyle}"
+                    Background="Transparent"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <mah:PackIconCodicons Width="50" Height="50" Kind="Account"/>
+            </Button>
+
+
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding Path=Navigation.CurrentView}">
+            
+        </ContentControl>
+
+    </Grid>
+</Window>
