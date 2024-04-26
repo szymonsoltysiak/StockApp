@@ -17,14 +17,15 @@
 
         <StackPanel Grid.Column="0">
             <Separator Height="80" Background="Transparent"/>
-
+        
             <Button Command="{Binding Path=NavigateToHomeCommand}" 
                     ToolTip="Home" 
                     Style="{DynamicResource buttonstyle}"
                     Background="Transparent"
                     Foreground="White"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    BorderThickness="0">
                 <mah:PackIconModern Width="50" Height="50" Kind="Home"/>
             </Button>
 
@@ -36,7 +37,8 @@
                     Background="Transparent"
                     Foreground="White"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    BorderThickness="0">
                 <mah:PackIconBootstrapIcons Width="50" Height="50" Kind="BarChartLine"/>
             </Button>
 
@@ -48,7 +50,8 @@
                     Background="Transparent"
                     Foreground="White"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    BorderThickness="0">
                 <mah:PackIconCodicons Width="50" Height="50" Kind="Account"/>
             </Button>
 
