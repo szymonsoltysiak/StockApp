@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Stock_App.MVVM.View"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#151f2d">
@@ -25,55 +25,62 @@
         <Border Grid.Row="1" Grid.Column="0">
             <TextBlock Text="Top News:" Foreground="White" FontSize="25"/>
         </Border>
+
         <Border Grid.Row="2" Grid.Column="0">
-            <ListView Margin="0 40 0 0" Background="Transparent" BorderThickness="0" 
-                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0"> <TextBlock  Text="{Binding ArticleList[0].Title}" Foreground="White" FontSize="15"/> </Border>
-                    <Border Grid.Column="1">
-                        <TextBlock  Text="{Binding ArticleList[0].Author}" Foreground="White" FontSize="15"/>
-                    </Border>
-                    <Border Grid.Column="2">
-                        <TextBlock  Text="{Binding ArticleList[0].Description}" Foreground="White" FontSize="15"/>
-                    </Border>
-                </Grid>
-                <TextBlock Text="GOOG" Foreground="White" FontSize="15"/>
-                <TextBlock Text="TSLA" Foreground="White" FontSize="15"/>
-                <TextBlock Text="NVDA" Foreground="White" FontSize="15"/>
-            </ListView>
+            <TextBlock Text="{Binding ArticleList[0].Title}" FontSize="20" Foreground="#eee"/>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Popular Stocks:" Foreground="White" FontSize="25"/>
         </Border>
-        
+
         <Border Grid.Row="2" Grid.Column="1">
-            <ListView Margin="0 40 0 0" Background="Transparent" BorderThickness="0" 
-                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0">
-                        <TextBlock  Text="{Binding StockList[0].Ticker}" Foreground="White" FontSize="15"/>
-                    </Border>
-                    <Border Grid.Column="1">
-                        <TextBlock  Text="{Binding StockList[0].Price}" Foreground="White" FontSize="15"/>
-                    </Border>
-                </Grid>
-                <TextBlock Text="GOOG" Foreground="White" FontSize="15"/>
-                <TextBlock Text="TSLA" Foreground="White" FontSize="15"/>
-                <TextBlock Text="NVDA" Foreground="White" FontSize="15"/>
+            <ListView Margin="0 40 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding StockList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Ticker}" Grid.Column="1" FontSize="20" Foreground="#eee" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                            <TextBlock Text="{Binding Price}"  Grid.Column="2" FontSize="20" Foreground="#eee" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                            <TextBlock Grid.Column="3" FontSize="20" Foreground="#eee" VerticalAlignment="Center" Margin="10 0 0 0">
+                                    <Run Text="{Binding Procent}" />
+                                    <Run Text="%" />
+                            </TextBlock>
+
+                            <Icon:PackIconMaterial Height="20" Width="20" Margin="40 0 0 0" Grid.Column="4">
+                                <Icon:PackIconMaterial.Style>
+                                    <Style TargetType="Icon:PackIconMaterial">
+                                        <Setter Property="Kind" Value="ChevronUpCircle"/>
+                                        <Setter Property="Foreground" Value="#19dc2d"/>
+
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsUp}" Value="True">
+                                                <Setter Property="Kind" Value="ArrowUp"/>
+                                                <Setter Property="Foreground" Value="#19dc2d"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsUp}" Value="False">
+                                                <Setter Property="Kind" Value="ArrowDown"/>
+                                                <Setter Property="Foreground" Value="#f72353"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Icon:PackIconMaterial.Style>
+                            </Icon:PackIconMaterial>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Border>
+
+        
 
         <Border Grid.Row="3" Grid.Column="0">
             <TextBlock Text="INDEXNASDAQ" Foreground="White" FontSize="25"/>

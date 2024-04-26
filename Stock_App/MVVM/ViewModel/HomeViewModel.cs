@@ -20,27 +20,36 @@ namespace Stock_App.MVVM.ViewModel
         {
             ArticleList = new List<ArticleNews>();
             NewsProvider = new News();
-            ArticleList.Add(new ArticleNews("Tytul ", " Autor ", " Opis"));
-            /*NewsProvider.Fill();
-            foreach (ArticleNews article in NewsProvider.NewsList)
-            {
-                ArticleList.Add(new ArticleNews(article.Title, article.Author, article.Description));
-            }*/
+            //DownloadNews();
+            List<string> tickerList = new List<string>() { "MSFT", "GOOG", "NVDA", "TSLA", "AAPL"};
             StockList = new List<Stock>();
             Stocks = new PopularStocks();
-            List<string> tickerList = new List<string>() { "AAPL", "GOOG", "NVDA" };
-            Stocks.Fill(tickerList);
-            StockList.Add(new Stock("AAPL", 12.6, 2.3, true));
-            /*foreach (Stock stock in Stocks.PopularStockList)
-            {
-                StockList.Add(new Stock(stock.Ticker, stock.Price, stock.Procent, stock.IsUp));
-            }*/
+            DownloadStock(tickerList);
         }
 
         private List<ArticleNews> _articleList;
         private News _newsProvider;
         private List<Stock> _stockList;
         private PopularStocks _stocks;
+
+        public async void DownloadStock(List<string> tickerList)
+        {
+            await Stocks.Fill(tickerList);
+            foreach (Stock stock in Stocks.PopularStockList)
+            {
+                StockList.Add(new Stock(stock.Ticker, Math.Round(stock.Price, 2), Math.Round(stock.Procent,2), stock.IsUp));
+            }
+        }
+
+        public void DownloadNews()
+        {
+            ArticleList.Add(new ArticleNews("Tytul ", " Autor ", " Opis"));
+            NewsProvider.Fill();
+            foreach (ArticleNews article in NewsProvider.NewsList)
+            {
+                ArticleList.Add(new ArticleNews(article.Title, article.Author, article.Description));
+            }
+        }
 
         public List<ArticleNews> ArticleList
         {
