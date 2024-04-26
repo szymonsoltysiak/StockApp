@@ -327,18 +327,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "NewsAPI/0.7.0": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "10.0.3"
-        },
-        "compile": {
-          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {}
-        },
-        "runtime": {
-          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {}
-        }
-      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -1415,18 +1403,6 @@
         "version.txt"
       ]
     },
-    "NewsAPI/0.7.0": {
-      "sha512": "ZKJCjE/8M41hDHMHvd6f+dejHBaobOuw+Erk9miqcwlixiZ8neRXawR62Fq7rZcBUD/drT26OhvgSa8t6woULg==",
-      "type": "package",
-      "path": "newsapi/0.7.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/portable45-net45+win8+wpa81/NewsAPI.dll",
-        "newsapi.0.7.0.nupkg.sha512",
-        "newsapi.nuspec"
-      ]
-    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -1535,7 +1511,7 @@
       "LiveCharts.Wpf >= 0.9.7",
       "MahApps.Metro.IconPacks >= 4.11.0",
       "Microsoft.Extensions.DependencyInjection >= 8.0.0",
-      "NewsAPI >= 0.7.0",
+      "Newtonsoft.Json >= 13.0.3",
       "YahooFinanceApi >= 2.3.3"
     ]
   },
@@ -1601,9 +1577,9 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
-          "NewsAPI": {
+          "Newtonsoft.Json": {
             "target": "Package",
-            "version": "[0.7.0, )"
+            "version": "[13.0.3, )"
           },
           "YahooFinanceApi": {
             "target": "Package",
@@ -1650,16 +1626,6 @@
       "warningLevel": 1,
       "message": "Pakiet „LiveCharts.Wpf 0.9.7” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net8.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
       "libraryId": "LiveCharts.Wpf",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „NewsAPI 0.7.0” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net8.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
-      "libraryId": "NewsAPI",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]

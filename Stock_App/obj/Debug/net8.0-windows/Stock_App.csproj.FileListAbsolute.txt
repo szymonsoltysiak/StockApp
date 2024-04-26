@@ -71,4 +71,3 @@ C:\Users\szymo\source\repos\Stock_App\Stock_App\bin\Debug\net8.0-windows\Flurl.d
 C:\Users\szymo\source\repos\Stock_App\Stock_App\bin\Debug\net8.0-windows\Flurl.Http.dll
 C:\Users\szymo\source\repos\Stock_App\Stock_App\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 C:\Users\szymo\source\repos\Stock_App\Stock_App\bin\Debug\net8.0-windows\YahooFinanceApi.dll
-C:\Users\szymo\source\repos\Stock_App\Stock_App\bin\Debug\net8.0-windows\NewsAPI.dll

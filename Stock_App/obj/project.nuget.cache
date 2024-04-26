@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2dT7+XIb64OZb6v+2Q/llJhlnTFjZjluZ18atL62Ql1HhHpY2Gxhnvsr5qnPo7gpzSn5YtK8EBqJ50l2/9JnpQ==",
+  "dgSpecHash": "zZQa2eLl/IdqYaN1N+D8z7sSrETptgY5EQL9VDg8rV9lvvYiU8qIaq3inUyOPLdLjrp+97sdp9gq8hLfMccQ7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App\\Stock_App.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,6 @@
     "C:\\Users\\szymo\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\szymo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\szymo\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
-    "C:\\Users\\szymo\\.nuget\\packages\\newsapi\\0.7.0\\newsapi.0.7.0.nupkg.sha512",
     "C:\\Users\\szymo\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\szymo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Users\\szymo\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
@@ -36,16 +35,6 @@
       "warningLevel": 1,
       "message": "Pakiet „LiveCharts.Wpf 0.9.7” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net8.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
       "libraryId": "LiveCharts.Wpf",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „NewsAPI 0.7.0” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net8.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
-      "libraryId": "NewsAPI",
       "targetGraphs": [
         "net8.0-windows7.0"
       ]

@@ -81,12 +81,19 @@ namespace Stock_App.Services
         {
             foreach (string ticker in tickerList)
             {
-                var securities = await Yahoo.Symbols(ticker).Fields(Field.Symbol, Field.RegularMarketPrice, Field.RegularMarketChange).QueryAsync();
-                var stock = securities[ticker];
-                double price = stock[Field.RegularMarketPrice];
-                double procent = stock[Field.RegularMarketChange] * 100 / stock[Field.RegularMarketPrice];
-                bool isup = stock[Field.RegularMarketChange] >= 0;
-                PopularStockList.Add(new Stock(ticker, price, procent, isup));
+                try
+                {
+                    var securities = await Yahoo.Symbols(ticker).Fields(Field.Symbol, Field.RegularMarketPrice, Field.RegularMarketChange).QueryAsync();
+                    var stock = securities[ticker];
+                    double price = Math.Round(stock[Field.RegularMarketPrice], 2);
+                    double procent = Math.Round(stock[Field.RegularMarketChange] * 100 / stock[Field.RegularMarketPrice], 2);
+                    bool isup = stock[Field.RegularMarketChange] >= 0;
+                    PopularStockList.Add(new Stock(ticker, price, procent, isup));
+                }
+                catch (Exception ex) 
+                { 
+                    
+                }
             }
         }
     }

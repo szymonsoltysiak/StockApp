@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using NewsAPI.Models;
 using Stock_App.Services;
+using YahooFinanceApi;
 
 
 namespace Stock_App.MVVM.ViewModel
@@ -18,9 +19,9 @@ namespace Stock_App.MVVM.ViewModel
     {
         public HomeViewModel()
         {
-            ArticleList = new List<ArticleNews>();
-            NewsProvider = new News();
-            //DownloadNews();
+            string apiKey = "1d1cb83956234b089fc68e32deecf989";
+            NewsClient = new NewsApiClient(apiKey);
+            DownloadNews();
 
             List<string> tickerList = new List<string>() { "MSFT", "GOOG", "NVDA", "TSLA", "AAPL" };
             Stocks = new PopularStocks();
@@ -33,10 +34,9 @@ namespace Stock_App.MVVM.ViewModel
             DownloadChartData(ticker, start, end);
         }
 
-        private List<ArticleNews> _articleList;
-        private News _newsProvider;
         private PopularStocks _stocks;
         private ChartData _chartDataProvider;
+        private NewsApiClient _newsClient;
 
         public async void DownloadStock(List<string> tickerList)
         {
@@ -48,34 +48,9 @@ namespace Stock_App.MVVM.ViewModel
             await ChartDataProvider.Fill(ticker, start, end);
         }
 
-        public void DownloadNews()
+        public async void DownloadNews()
         {
-            ArticleList.Add(new ArticleNews("Tytul ", " Autor ", " Opis"));
-            NewsProvider.Fill();
-            foreach (ArticleNews article in NewsProvider.NewsList)
-            {
-                ArticleList.Add(new ArticleNews(article.Title, article.Author, article.Description));
-            }
-        }
-
-        public List<ArticleNews> ArticleList
-        {
-            get { return _articleList; }
-            set
-            {
-                _articleList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public News NewsProvider
-        {
-            get { return _newsProvider; }
-            set
-            {
-                _newsProvider = value;
-                OnPropertyChanged();
-            }
+            await NewsClient.GetTopHeadlinesAsync();
         }
 
         public PopularStocks Stocks
@@ -94,6 +69,16 @@ namespace Stock_App.MVVM.ViewModel
             set
             {
                 _chartDataProvider = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public NewsApiClient NewsClient
+        {
+            get { return _newsClient; }
+            set
+            {
+                _newsClient = value;
                 OnPropertyChanged();
             }
         }

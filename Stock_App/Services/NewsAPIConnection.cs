@@ -1,66 +1,84 @@
-﻿using NewsAPI.Constants;
-using NewsAPI.Models;
-using NewsAPI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Stock_App.Services;
+using System.Net.Http;
 
 
 namespace Stock_App.Services
 {
-    public class ArticleNews
+    public class NewsApiResponse
     {
+        public string Status { get; set; }
+        public int TotalResults { get; set; }
+        public Article[] Articles { get; set; }
+    }
+
+    public class Article
+    {
+        public Source Source { get; set; }
+        public string Author { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Author { get; set; }
-        public ArticleNews()
-        {
-            Title = string.Empty;
-            Author = string.Empty;
-            Description = string.Empty;
-        }
-        public ArticleNews(string title, string author, string description)
-        {
-            Title = title;
-            Author = author;
-            Description = description;
-        }
+        public string Url { get; set; }
+        public string UrlToImage { get; set; }
+        public DateTime PublishedAt { get; set; }
+        public string Content { get; set; }
     }
 
-    public class News
+    public class Source
     {
-        public List<ArticleNews> NewsList { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
 
-        public News()
+    public class NewsApiClient
+    {
+        public string ApiKey;
+        public NewsApiResponse Response { get; set; }
+
+        public NewsApiClient(string apiKey)
         {
-            NewsList = new List<ArticleNews>();
+            ApiKey = apiKey;
+            Response = new NewsApiResponse();
         }
 
-
-        public void Fill()
+        public async Task GetTopHeadlinesAsync()
         {
-            var newsApiClient = new NewsApiClient("1d1cb83956234b089fc68e32deecf989");
-            var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
-            {
-                Q = "Stock Market",
-                SortBy = SortBys.Popularity,
-                Language = Languages.EN,
-                From = DateTime.Now.AddDays(-2)
-            });
+            string apiKey = ApiKey;
 
-            if (articlesResponse.Status == Statuses.Ok)
-            {
-                int numResults = articlesResponse.TotalResults;
+            string apiUrl = $"https://newsapi.org/v2/top-headlines?country=us&apiKey={apiKey}";
 
-                for (int i = 0; i < 3 && i < numResults; i++)
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", "C# NewsAPI Client");
+
+                try
                 {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
                     {
-                        NewsList.Add(new ArticleNews(articlesResponse.Articles[i].Title, articlesResponse.Articles[i].Author, articlesResponse.Articles[i].Description));
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        Response = JsonConvert.DeserializeObject<NewsApiResponse>(jsonResponse);
+                    }
+                    else
+                    {
+                        string errorMessage = await response.Content.ReadAsStringAsync();
+                        Response.Status = errorMessage;
                     }
                 }
+                catch (Exception ex)
+                {
+                    Response.Status=ex.Message;
+                }
             }
+
         }
     }
+
 }
