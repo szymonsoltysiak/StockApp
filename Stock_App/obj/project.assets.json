@@ -1152,23 +1152,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\szymo\\.nuget\\packages\\": {},
+    "C:\\Users\\Wojtek\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App\\Stock_App.csproj",
+      "projectUniqueName": "C:\\Users\\Wojtek\\Source\\Repos\\StockApp\\Stock_App\\Stock_App.csproj",
       "projectName": "Stock_App",
-      "projectPath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App\\Stock_App.csproj",
-      "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App\\obj\\",
+      "projectPath": "C:\\Users\\Wojtek\\Source\\Repos\\StockApp\\Stock_App\\Stock_App.csproj",
+      "packagesPath": "C:\\Users\\Wojtek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wojtek\\Source\\Repos\\StockApp\\Stock_App\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Wojtek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

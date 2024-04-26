@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Stock_App.Core;
+using Stock_App.MVVM.View;
 using Stock_App.MVVM.ViewModel;
 using Stock_App.Services;
 using System.Configuration;
@@ -18,7 +19,7 @@ namespace Stock_App
        public App()
         {
             IServiceCollection services = new ServiceCollection();
-
+            services.AddSingleton<LoginWindow>();
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
@@ -36,8 +37,8 @@ namespace Stock_App
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+            loginWindow.Show();
             base.OnStartup(e);
         }
 

@@ -1,7 +1,9 @@
 ﻿
-FC:\Users\szymo\source\repos\Stock_App\Stock_App\App.xaml;;
-FC:\Users\szymo\source\repos\Stock_App\Stock_App\MVVM\View\HomeView.xaml;;
-FC:\Users\szymo\source\repos\Stock_App\Stock_App\MVVM\View\MainWindow.xaml;;
-FC:\Users\szymo\source\repos\Stock_App\Stock_App\MVVM\View\PortfolioView.xaml;;
-FC:\Users\szymo\source\repos\Stock_App\Stock_App\MVVM\View\ProfileView.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\App.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\HomeView.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\LoginWindow.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\MainWindow.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\PortfolioView.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\ProfileView.xaml;;
+FC:\Users\Wojtek\source\repos\StockApp\Stock_App\MVVM\View\Subparts\ClearableTextbox.xaml;;
 
