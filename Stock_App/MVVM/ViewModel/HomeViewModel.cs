@@ -23,7 +23,6 @@ namespace Stock_App.MVVM.ViewModel
             //DownloadNews();
 
             List<string> tickerList = new List<string>() { "MSFT", "GOOG", "NVDA", "TSLA", "AAPL" };
-            StockList = new List<Stock>();
             Stocks = new PopularStocks();
             DownloadStock(tickerList);
 
@@ -36,17 +35,12 @@ namespace Stock_App.MVVM.ViewModel
 
         private List<ArticleNews> _articleList;
         private News _newsProvider;
-        private List<Stock> _stockList;
         private PopularStocks _stocks;
         private ChartData _chartDataProvider;
 
         public async void DownloadStock(List<string> tickerList)
         {
             await Stocks.Fill(tickerList);
-            foreach (Stock stock in Stocks.PopularStockList)
-            {
-                StockList.Add(new Stock(stock.Ticker, Math.Round(stock.Price, 2), Math.Round(stock.Procent, 2), stock.IsUp));
-            }
         }
 
         public async void DownloadChartData(string ticker, DateTime start, DateTime end)
@@ -80,16 +74,6 @@ namespace Stock_App.MVVM.ViewModel
             set
             {
                 _newsProvider = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<Stock> StockList
-        {
-            get { return _stockList; }
-            set
-            {
-                _stockList = value;
                 OnPropertyChanged();
             }
         }

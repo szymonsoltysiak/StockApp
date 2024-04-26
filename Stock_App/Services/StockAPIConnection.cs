@@ -89,14 +89,5 @@ namespace Stock_App.Services
                 PopularStockList.Add(new Stock(ticker, price, procent, isup));
             }
         }
-
-        /*public void Fill(List<string> tickerList)
-        {
-            foreach (string ticker in tickerList)
-            {
-                var task = FillOne(ticker);
-                task.Wait();
-            }
-        }*/
     }
 }

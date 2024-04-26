@@ -35,7 +35,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.Column="1">
-            <ListView Margin="0 40 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding StockList}">
+            <ListView Margin="0 40 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Stocks.PopularStockList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
