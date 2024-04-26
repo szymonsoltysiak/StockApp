@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YahooFinanceApi;
+using LiveCharts;
+
 
 namespace Stock_App.Services
 {
@@ -27,6 +29,44 @@ namespace Stock_App.Services
             Procent = procent;
             IsUp = isUp;
         }
+    }
+
+    public class ChartData
+    {
+        public string Ticker { get; set; }
+        public ChartValues<double> Values { get; set; }
+        DateTime Start { get; set; }
+        DateTime End { get; set; }
+        public string[] Labels { get; set; }
+
+        public ChartData()
+        {
+            Ticker = string.Empty;
+            Values = new ChartValues<double>();
+            Start = DateTime.Now.AddDays(-31);
+            End = DateTime.Now.AddDays(-1);
+            Labels = [];
+        }
+
+        public async Task Fill(string ticker, DateTime start, DateTime end)
+        {
+            Ticker = ticker;
+            Start = start;
+            End = end;
+            Values.Clear();
+            List<string> labels = new List<string>();
+
+            var history = await Yahoo.GetHistoricalAsync(ticker, start, end, Period.Daily);
+
+
+            foreach (var candle in history)
+            {
+                Values.Add(decimal.ToDouble(candle.Close));
+                labels.Add(candle.DateTime.ToString("dd-MM-yyyy"));
+            }
+            Labels = labels.ToArray();
+        }
+
     }
 
     public class PopularStocks
@@ -58,6 +98,5 @@ namespace Stock_App.Services
                 task.Wait();
             }
         }*/
-
     }
 }

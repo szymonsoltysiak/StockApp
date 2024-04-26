@@ -83,7 +83,7 @@
         
 
         <Border Grid.Row="3" Grid.Column="0">
-            <TextBlock Text="INDEXNASDAQ" Foreground="White" FontSize="25"/>
+            <TextBlock Text="{Binding ChartDataProvider.Ticker}" Foreground="White" FontSize="25"/>
         </Border>
 
         <Border Grid.Row="4" Grid.ColumnSpan="2">
@@ -94,7 +94,7 @@
                 </lvc:CartesianChart.DataTooltip>
 
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Foreground="#bcc0c6" ShowLabels="True">
+                    <lvc:Axis Foreground="#bcc0c6" ShowLabels="True" Labels="{Binding ChartDataProvider.Labels}">
                         <lvc:Axis.Separator>
                             <lvc:Separator StrokeThickness="0" Step="4"/>
                         </lvc:Axis.Separator>
@@ -102,7 +102,7 @@
                 </lvc:CartesianChart.AxisX>
 
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Foreground="#bcc0c6" ShowLabels="True" MinValue="0">
+                    <lvc:Axis Foreground="#bcc0c6" ShowLabels="True">
                         <lvc:Axis.Separator>
                             <lvc:Separator StrokeThickness="1" Stroke="#2c3a54"/>
                         </lvc:Axis.Separator>
@@ -111,7 +111,7 @@
 
                 <lvc:CartesianChart.Series>
                     <lvc:LineSeries StrokeThickness="2" Stroke="#6860e6" PointGeometrySize="0" LineSmoothness="0"
-                                    Values="12, 13, 15, 12, 14, 17, 21, 21, 22, 20, 10, 11, 12, 31, 32, 120">
+                                    Values="{Binding ChartDataProvider.Values}">
                         <lvc:LineSeries.Fill>
                             <LinearGradientBrush>
                                 <GradientStop Color="#2e3966" Offset="0.4"/>

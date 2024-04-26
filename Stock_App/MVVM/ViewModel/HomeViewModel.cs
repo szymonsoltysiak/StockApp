@@ -16,29 +16,42 @@ namespace Stock_App.MVVM.ViewModel
 
     public class HomeViewModel : Core.ViewModel, INotifyPropertyChanged
     {
-        public HomeViewModel() 
+        public HomeViewModel()
         {
             ArticleList = new List<ArticleNews>();
             NewsProvider = new News();
             //DownloadNews();
-            List<string> tickerList = new List<string>() { "MSFT", "GOOG", "NVDA", "TSLA", "AAPL"};
+
+            List<string> tickerList = new List<string>() { "MSFT", "GOOG", "NVDA", "TSLA", "AAPL" };
             StockList = new List<Stock>();
             Stocks = new PopularStocks();
             DownloadStock(tickerList);
+
+            ChartDataProvider = new ChartData();
+            string ticker = "AAPL";
+            DateTime start = DateTime.Now.AddDays(-31);
+            DateTime end = DateTime.Now.AddDays(-1);
+            DownloadChartData(ticker, start, end);
         }
 
         private List<ArticleNews> _articleList;
         private News _newsProvider;
         private List<Stock> _stockList;
         private PopularStocks _stocks;
+        private ChartData _chartDataProvider;
 
         public async void DownloadStock(List<string> tickerList)
         {
             await Stocks.Fill(tickerList);
             foreach (Stock stock in Stocks.PopularStockList)
             {
-                StockList.Add(new Stock(stock.Ticker, Math.Round(stock.Price, 2), Math.Round(stock.Procent,2), stock.IsUp));
+                StockList.Add(new Stock(stock.Ticker, Math.Round(stock.Price, 2), Math.Round(stock.Procent, 2), stock.IsUp));
             }
+        }
+
+        public async void DownloadChartData(string ticker, DateTime start, DateTime end)
+        {
+            await ChartDataProvider.Fill(ticker, start, end);
         }
 
         public void DownloadNews()
@@ -90,6 +103,17 @@ namespace Stock_App.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public ChartData ChartDataProvider
+        {
+            get { return _chartDataProvider; }
+            set
+            {
+                _chartDataProvider = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
