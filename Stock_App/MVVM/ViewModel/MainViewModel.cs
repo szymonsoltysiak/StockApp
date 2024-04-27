@@ -32,7 +32,7 @@ namespace Stock_App.MVVM.ViewModel
             NavigateToHomeCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<HomeViewModel>(); }, canExecute:o => true);
             NavigateToProfileCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<ProfileViewModel>(); }, canExecute:o => true);
             NavigateToPortfolioCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<PortoflioViewModel>(); }, canExecute:o => true);
-            Navigation.NavigateTo<HomeViewModel>();
+            Navigation.NavigateTo<PortoflioViewModel>();
         }
     }   
 }

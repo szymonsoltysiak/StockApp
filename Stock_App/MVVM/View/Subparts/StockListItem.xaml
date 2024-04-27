@@ -19,17 +19,6 @@
             <TextBlock Text="{Binding Ticker}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="1" Text="{Binding Price}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <Button Grid.Column="3"
-                    ToolTip="Edit" 
-                    Style="{DynamicResource buttonstyle}"
-                    Background="Transparent"
-                    Foreground="White"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    BorderThickness="0">
-                <mah:PackIconModern Width="30" Height="30" Kind="Edit"/>
-            </Button>
-
         </Grid>
     </Border>
 </UserControl>

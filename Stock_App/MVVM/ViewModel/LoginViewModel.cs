@@ -41,7 +41,6 @@ namespace Stock_App.MVVM.ViewModel
         public void LoggingIn()
         {
             var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
-            var homeWindow = serviceProvider.GetRequiredService<HomeViewModel>();
             mainWindow.Show();
         }
 

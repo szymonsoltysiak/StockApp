@@ -3,6 +3,7 @@ using Stock_App.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,17 +77,25 @@ namespace Stock_App.MVVM.ViewModel
 
         public RelayCommand AddStockItemCommand => new RelayCommand(execute:o => AddStockItem(), canExecute:o => {return true; });
         public RelayCommand DeleteStockItemCommand => new RelayCommand(execute: o => DeleteStockItem(), canExecute: o => SelectedStockItem != null );
+        public RelayCommand EditStockItemCommand => new RelayCommand(execute: o => EditStockItem(), canExecute: o => SelectedStockItem != null );
         public void AddStockItem()
         {
-            if (IsDoubleRealNumber(priceString))
+            if (IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker))
             {
-                Price = double.Parse(priceString);
+                Price = double.Parse(PriceString);
                 _stockItemList.Add(new StockItem(Ticker, Price));
             }
         }
         private void DeleteStockItem()
         {
             _stockItemList.Remove(SelectedStockItem);
+        }
+
+        private void EditStockItem()
+        {
+            Price = double.Parse(PriceString);
+            SelectedStockItem.Ticker = Ticker;
+            SelectedStockItem.Price = Price;
         }
     }
 }

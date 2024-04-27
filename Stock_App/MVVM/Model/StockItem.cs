@@ -11,8 +11,6 @@ namespace Stock_App.MVVM.Model
     {
         public string Ticker { get; set; }
         public double Price { get; set; }
-        public ICommand EditCommand { get; }
-        public ICommand DeleteCommand { get; }
 
         public StockItem(string ticker, double price)
         {

@@ -28,6 +28,23 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0" ToolTip="Delete" 
+                    Background="White"
+                    Foreground="#151f2d"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    Padding="10 5 10 5"
+                    Command="{Binding EditStockItemCommand}">
+                    <mah:PackIconModern Width="40" Height="40" Kind="Edit"/>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
                 <Button Grid.Column="1" ToolTip="Delete" 
                     Background="White"
                     Foreground="#151f2d"
@@ -62,9 +79,15 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+                <TextBlock Grid.Row="0" FontSize="20"
+                Grid.Column="0"
+                FontWeight="Bold"
+                Text="Add or edit selected stock:"  Foreground="White" Grid.ColumnSpan="3" Margin="0,0,0,0"/>      
+
+                <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -72,17 +95,20 @@
 
                     <Grid Grid.Row="0" Margin="0 10 0 10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="21" />
+                            <ColumnDefinition Width="79"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
+                    FontSize="20"
                     Grid.Column="0"
                     FontWeight="Bold"
-                    Text="Ticker"  Foreground="White" Grid.ColumnSpan="4" Margin="0,0,250,0"/>
+                    Text="Ticker"  Foreground="White" Grid.ColumnSpan="3" Margin="0,0,250,0"/>
 
                         <TextBox
-                    Grid.Column="1"
+                    FontSize="20"
+                    Grid.Column="2"
                     Margin="20,0,0,0"
                     AutomationProperties.AutomationId="StockTickerTextBox"
                     Text="{Binding Ticker, UpdateSourceTrigger=PropertyChanged}" />
@@ -98,11 +124,13 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
+                        FontSize="20"
                         Grid.Column="0"
                         FontWeight="Bold"
                         Text="Price"  Foreground="White" Grid.ColumnSpan="2" Margin="0,0,27,0"/>
 
                         <TextBox
+                        FontSize="20"
                         Grid.Column="1"
                         Margin="20,0,0,0"
                         AutomationProperties.AutomationId="StockPriceTextBox"
