@@ -1,0 +1,5 @@
+.vs
+Stock_App/obj
+Stock_App/obj/*
+Stock_App/bin
+Stock_App/bin/*
