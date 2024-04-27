@@ -1,4 +1,5 @@
-﻿using Stock_App.MVVM.View.Subparts;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Stock_App.MVVM.View.Subparts;
 using Stock_App.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,10 @@ namespace Stock_App.MVVM.View
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        public LoginWindow(ServiceProvider _serviceProvider)
         {
-            LoginViewModel vm = new LoginViewModel();
-            DataContext = vm;
             InitializeComponent();
+            DataContext = new LoginViewModel(_serviceProvider);
         }
     }
 }

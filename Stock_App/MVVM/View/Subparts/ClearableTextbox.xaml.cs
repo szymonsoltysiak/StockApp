@@ -23,8 +23,8 @@ namespace Stock_App.MVVM.View.Subparts
     {
         public ClearableTextbox()
         {
-            DataContext = this;
             InitializeComponent();
+            DataContext = this;
         }
 
         private string placeholder;

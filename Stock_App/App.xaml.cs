@@ -19,7 +19,6 @@ namespace Stock_App
        public App()
         {
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<LoginWindow>();
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
@@ -37,12 +36,12 @@ namespace Stock_App
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+            var loginWindow = new LoginWindow(_serviceProvider);
             loginWindow.Show();
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            /*var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             var homeWindow = _serviceProvider.GetRequiredService<HomeViewModel>();
             mainWindow.Show();
-            homeWindow.Equals(mainWindow);
+            homeWindow.Equals(mainWindow);*/
             base.OnStartup(e);
         }
 

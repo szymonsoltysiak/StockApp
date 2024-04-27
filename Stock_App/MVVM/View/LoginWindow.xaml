@@ -23,7 +23,8 @@
             <TextBlock Grid.Row="1" Text="Enter your credentials" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
             <subparts:ClearableTextbox x:Name="loginBox" Grid.Row="2" Placeholder="e-mail or login" Height="30" Margin="40,0,40,0" FontSize="12"/>
             <subparts:ClearableTextbox x:Name="passBox" Grid.Row="3" Placeholder="password" Height="30" Margin="40,0,40,0" FontSize="12"/>
-            <Button x:Name="loginBtn" Grid.Row="4" Height="30" Width="100" Content="Login" Background="WhiteSmoke" Foreground="#28228f" BorderThickness="0"/>
+            <Button x:Name="loginBtn" Grid.Row="4" Height="30" Width="100" Content="Login" Background="WhiteSmoke" Foreground="#28228f" BorderThickness="0" Command="{Binding LoggingInCommand}"/>
+            <!-- for_testing_purpouses <TextBlock Grid.Row="5" Background="Transparent" Foreground="DarkViolet" Text="{Binding ClickCount}" HorizontalAlignment="Center"/>-->
         </Grid>
     </Grid>
 </Window>

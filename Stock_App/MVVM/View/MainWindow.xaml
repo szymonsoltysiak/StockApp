@@ -45,7 +45,7 @@
 
             <Separator Height="20" Background="Transparent"/>
 
-            <Button Command="{Binding Path=NavigateToProfileCommand}" 
+            <Button Command="{Binding Path=NavigateToProfileCommand}"
                     ToolTip="Profile" 
                     Style="{DynamicResource buttonstyle}"
                     Background="Transparent"
