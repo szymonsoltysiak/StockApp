@@ -14,6 +14,7 @@ namespace Stock_App.MVVM.ViewModel
     {
         private readonly ObservableCollection<StockItem> _stockItemList;
         public IEnumerable<StockItem> StockItemList => _stockItemList;
+        
 
         public PortoflioViewModel()
         {
@@ -33,13 +34,55 @@ namespace Stock_App.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        private string ticker;
+        public string Ticker
+        {
+            get { return ticker; }
+            set
+            {
+                if (!string.Equals(ticker, value))
+                {
+                    ticker = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
+        public static bool IsDoubleRealNumber(string valueToTest)
+        {
+            if (double.TryParse(valueToTest, out double d) && !Double.IsNaN(d) && !Double.IsInfinity(d))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private string priceString;
+        public string PriceString
+        {
+            get { return priceString; }
+            set
+            {
+                if (!string.Equals(priceString, value))
+                {
+                    priceString = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public double Price { get; set; }
 
         public RelayCommand AddStockItemCommand => new RelayCommand(execute:o => AddStockItem(), canExecute:o => {return true; });
         public RelayCommand DeleteStockItemCommand => new RelayCommand(execute: o => DeleteStockItem(), canExecute: o => SelectedStockItem != null );
         public void AddStockItem()
         {
-            _stockItemList.Add(new StockItem ( "XXXX", 99.99 ));
+            if (IsDoubleRealNumber(priceString))
+            {
+                Price = double.Parse(priceString);
+                _stockItemList.Add(new StockItem(Ticker, Price));
+            }
         }
         private void DeleteStockItem()
         {
