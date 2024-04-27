@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Stock_App.MVVM.ViewModel
+namespace Stock_App.MVVM.Model
 {
-    public class StockListItemViewModel : Core.ViewModel
+    public class StockItem : Core.ObesrvableObject
     {
         public string Ticker { get; set; }
         public double Price { get; set; }
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public StockListItemViewModel(string ticker, double price) 
+        public StockItem(string ticker, double price)
         {
             Ticker = ticker;
             Price = price;

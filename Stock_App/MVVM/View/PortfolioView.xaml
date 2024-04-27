@@ -23,24 +23,46 @@
             <TextBlock Text="Your Portfolio:" Margin="40 0 0 0" Foreground="White" FontSize="45" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="0" Grid.Column="1">
-            <Button ToolTip="Add" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button ToolTip="Add" 
                     Background="White"
                     Foreground="#151f2d"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     BorderThickness="0"
-                    Padding="10 5 10 5">
-                <mah:PackIconModern Width="40" Height="40" Kind="Add"/>
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="8"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+                    Padding="10 5 10 5"
+                    Command="{Binding AddStockItemCommand}">
+                    <mah:PackIconModern Width="40" Height="40" Kind="Add"/>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Column="1" ToolTip="Delete" 
+                    Background="White"
+                    Foreground="#151f2d"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    Padding="10 5 10 5"
+                    Command="{Binding DeleteStockItemCommand}">
+                    <mah:PackIconModern Width="40" Height="40" Kind="Delete"/>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="10">
-            <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding StockListItemVM}">
+            <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding StockItemList}" SelectedItem="{Binding SelectedStockItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <parts:StockListItem/>
