@@ -17,14 +17,6 @@ namespace Stock_App.MVVM.ViewModel
         {
             return true;
         }
-
-        private string stuff;
-
-        /*public void Test()
-        {
-            
-            loginBtn.IsEnabled = false;
-        }*/
     }
 
 }

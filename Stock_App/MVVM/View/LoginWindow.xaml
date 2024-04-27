@@ -7,7 +7,8 @@
         xmlns:subparts="clr-namespace:Stock_App.MVVM.View.Subparts" xmlns:viewmodel="clr-namespace:Stock_App.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:LoginViewModel}"
         mc:Ignorable="d"
         Title="Stock App - logging" Height="400" Width="350"
-        Background="LightBlue">
+        Background="LightBlue"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid>

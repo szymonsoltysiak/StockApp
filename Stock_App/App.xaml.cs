@@ -39,6 +39,8 @@ namespace Stock_App
         {
             var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
             loginWindow.Show();
+            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
             base.OnStartup(e);
         }
 

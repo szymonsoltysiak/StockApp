@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:Stock_App"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="760" Width="1280" WindowStartupLocation="CenterScreen" 
+        Height="760" Width="1280"
+        WindowStartupLocation="CenterScreen" 
         Background="#151f2d">
     <Grid>
         <Grid.ColumnDefinitions>

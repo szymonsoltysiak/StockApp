@@ -6,17 +6,18 @@
              xmlns:view="clr-namespace:Stock_App.MVVM.View">
 
     <Application.Resources>
-    <DataTemplate DataType="{x:Type TypeName=viewModel:HomeViewModel}">
-        <view:HomeView/>
-    </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=viewModel:ProfileViewModel}">
-        <view:ProfileView/>
-    </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=viewModel:HomeViewModel}">
+            <view:HomeView/>
+        </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=viewModel:PortoflioViewModel}">
-          <view:PortfolioView/>
-    </DataTemplate>
+        <DataTemplate DataType="{x:Type TypeName=viewModel:ProfileViewModel}">
+            <view:ProfileView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type TypeName=viewModel:PortoflioViewModel}">
+              <view:PortfolioView/>
+        </DataTemplate>
         
     </Application.Resources>
 
