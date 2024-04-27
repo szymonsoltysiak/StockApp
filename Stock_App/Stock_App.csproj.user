@@ -22,6 +22,9 @@
     <Compile Update="MVVM\View\Subparts\ClearableTextbox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\Subparts\StockListItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MVVM\View\HomeView.xaml">
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\Subparts\ClearableTextbox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Subparts\StockListItem.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

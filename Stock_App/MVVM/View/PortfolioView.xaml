@@ -4,11 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Stock_App.MVVM.View"
+             xmlns:parts="clr-namespace:Stock_App.MVVM.View.Subparts"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="DarkBlue">
-    <Grid>
-    <TextBlock Text="Portfolio" Foreground="White"/>
-</Grid>
+             Background="#151f2d">
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Your Portfolio:" Margin="40 0 0 0" Foreground="White" FontSize="45" VerticalAlignment="Center"/>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1">
+            <Button ToolTip="Add" 
+                    Background="White"
+                    Foreground="#151f2d"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    Padding="10 5 10 5">
+                <mah:PackIconModern Width="40" Height="40" Kind="Add"/>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="10">
+            <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding StockListItemVM}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <parts:StockListItem/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+
+    </Grid>
 
 </UserControl>
