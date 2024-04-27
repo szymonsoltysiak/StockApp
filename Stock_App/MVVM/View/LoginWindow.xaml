@@ -7,7 +7,7 @@
         xmlns:subparts="clr-namespace:Stock_App.MVVM.View.Subparts" xmlns:viewmodel="clr-namespace:Stock_App.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:LoginViewModel}"
         mc:Ignorable="d"
         Title="Stock App - logging" Height="400" Width="350"
-        Background="LightBlue"
+        Background="#1b2a40"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -23,7 +23,7 @@
             <TextBlock Grid.Row="1" Text="Enter your credentials" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
             <subparts:ClearableTextbox x:Name="loginBox" Grid.Row="2" Placeholder="e-mail or login" Height="30" Margin="40,0,40,0" FontSize="12"/>
             <subparts:ClearableTextbox x:Name="passBox" Grid.Row="3" Placeholder="password" Height="30" Margin="40,0,40,0" FontSize="12"/>
-            <Button x:Name="loginBtn" Grid.Row="4" Height="30" Width="100" Content="Login" />
+            <Button x:Name="loginBtn" Grid.Row="4" Height="30" Width="100" Content="Login" Background="WhiteSmoke" Foreground="#28228f" BorderThickness="0"/>
         </Grid>
     </Grid>
 </Window>
