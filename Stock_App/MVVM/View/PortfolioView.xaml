@@ -174,7 +174,7 @@
         BorderThickness="0"
         Padding="10 5 10 5"
         Command="{Binding ExportPortfolioCommand}">
-            <mah:PackIconModern Width="40" Height="40" Kind="OfficeExcel"/>
+            <mah:PackIconModern Width="40" Height="40" Kind="PageExcel"/>
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="8"/>
