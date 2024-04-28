@@ -55,7 +55,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.Column="1">
-            <ListView Margin="0 20 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Stocks.PopularStockList}">
+            <ListView Margin="0 20 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Stocks.PopularStockList}" SelectedItem="{Binding SelectedStock}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -103,7 +103,7 @@
         
 
         <Border Grid.Row="3" Grid.Column="0">
-            <TextBlock Text="{Binding ChartDataProvider.Ticker}" Foreground="White" FontSize="25"/>
+            <TextBlock Text="{Binding SelectedStock.Ticker}" Foreground="White" FontSize="25"/>
         </Border>
 
         <Border Grid.Row="4" Grid.ColumnSpan="2">

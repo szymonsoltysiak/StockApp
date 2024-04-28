@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Stock_App.EntityFramework
-build_property.ProjectDir = C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\
+build_property.ProjectDir = C:\Users\szymo\source\repos\Stock_App\Stock_App.EntityFramework\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

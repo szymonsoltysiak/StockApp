@@ -1203,23 +1203,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Wojtek\\.nuget\\packages\\": {},
+    "C:\\Users\\szymo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wojtek\\source\\repos\\StockApp\\Stock_App.EntityFramework\\Stock_App.EntityFramework.csproj",
+      "projectUniqueName": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App.EntityFramework\\Stock_App.EntityFramework.csproj",
       "projectName": "Stock_App.EntityFramework",
-      "projectPath": "C:\\Users\\Wojtek\\source\\repos\\StockApp\\Stock_App.EntityFramework\\Stock_App.EntityFramework.csproj",
-      "packagesPath": "C:\\Users\\Wojtek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wojtek\\source\\repos\\StockApp\\Stock_App.EntityFramework\\obj\\",
+      "projectPath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App.EntityFramework\\Stock_App.EntityFramework.csproj",
+      "packagesPath": "C:\\Users\\szymo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App.EntityFramework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Wojtek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\szymo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1235,8 +1235,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Wojtek\\source\\repos\\StockApp\\Stock_App.Domain\\Stock_App.Domain.csproj": {
-              "projectPath": "C:\\Users\\Wojtek\\source\\repos\\StockApp\\Stock_App.Domain\\Stock_App.Domain.csproj"
+            "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App.Domain\\Stock_App.Domain.csproj": {
+              "projectPath": "C:\\Users\\szymo\\source\\repos\\Stock_App\\Stock_App.Domain\\Stock_App.Domain.csproj"
             }
           }
         }

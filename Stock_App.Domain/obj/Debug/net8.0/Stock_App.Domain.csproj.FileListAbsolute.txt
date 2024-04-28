@@ -10,3 +10,15 @@ C:\Users\Wojtek\source\repos\StockApp\Stock_App.Domain\obj\Debug\net8.0\Stock_Ap
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.Domain\obj\Debug\net8.0\refint\Stock_App.Domain.dll
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.pdb
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.Domain\obj\Debug\net8.0\ref\Stock_App.Domain.dll
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\bin\Debug\net8.0\Stock_App.Domain.deps.json
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\bin\Debug\net8.0\Stock_App.Domain.dll
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\bin\Debug\net8.0\Stock_App.Domain.pdb
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.AssemblyInfoInputs.cache
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.AssemblyInfo.cs
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.csproj.CoreCompileInputs.cache
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.sourcelink.json
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.dll
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\refint\Stock_App.Domain.dll
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\Stock_App.Domain.pdb
+C:\Users\szymo\source\repos\Stock_App\Stock_App.Domain\obj\Debug\net8.0\ref\Stock_App.Domain.dll
