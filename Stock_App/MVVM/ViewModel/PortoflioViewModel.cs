@@ -23,6 +23,11 @@ namespace Stock_App.MVVM.ViewModel
             _stockItemList.Add(new StockItem("AAPL", 12.36));
             _stockItemList.Add(new StockItem("MSFT", 22.17));
             _stockItemList.Add(new StockItem("NVDA", 112.36));
+            TotalSum = 0;
+            foreach (StockItem stockItem in _stockItemList) 
+            {
+                TotalSum += stockItem.Price;
+            }
         }
 
         private StockItem selectedStockItem;
@@ -84,18 +89,24 @@ namespace Stock_App.MVVM.ViewModel
             {
                 Price = double.Parse(PriceString);
                 _stockItemList.Add(new StockItem(Ticker, Price));
+                TotalSum += Price;
             }
         }
         private void DeleteStockItem()
         {
+            TotalSum -= SelectedStockItem.Price;
             _stockItemList.Remove(SelectedStockItem);
         }
 
         private void EditStockItem()
         {
+            TotalSum-=SelectedStockItem.Price;
             Price = double.Parse(PriceString);
             SelectedStockItem.Ticker = Ticker;
             SelectedStockItem.Price = Price;
+            TotalSum+= Price;
         }
+
+        public double TotalSum { get; set; }
     }
 }

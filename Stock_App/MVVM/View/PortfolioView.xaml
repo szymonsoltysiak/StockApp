@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -157,6 +158,29 @@
             </Grid>
         </Border>
 
+        <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+        FontSize="40" Foreground="White" Grid.ColumnSpan="2" Margin="0,0,27,0">
+            <Run Text="Total sum:" />
+            <Run Text="{Binding TotalSum, StringFormat=N2}" />
+        </TextBlock>
+
+        <Button 
+        Grid.Column="3" ToolTip="Export" 
+        Grid.Row="3"
+        Background="White"
+        Foreground="#151f2d"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center"
+        BorderThickness="0"
+        Padding="10 5 10 5"
+        Command="{Binding ExportPortfolioCommand}">
+            <mah:PackIconModern Width="40" Height="40" Kind="OfficeExcel"/>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
 
     </Grid>
