@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Stock_App.EntityFramework
 {
-    public class StockItemsDbContextFactory
+    public class StockAppDbContextFactory
     {
         private readonly DbContextOptions _options;
 
-        public StockItemsDbContextFactory(DbContextOptions options)
+        public StockAppDbContextFactory(DbContextOptions options)
         {
             _options = options;
         }
