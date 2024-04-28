@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Stock_App.Core;
-using Stock_App.MVVM.Model;
+using Stock_App.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

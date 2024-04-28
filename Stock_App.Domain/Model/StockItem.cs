@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Stock_App.MVVM.Model
+namespace Stock_App.Domain.Model
 {
-    public class StockItem : Core.ObesrvableObject
+    public class StockItem
     {
         public string Ticker { get; set; }
         public double Price { get; set; }
