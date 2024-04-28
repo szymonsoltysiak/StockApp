@@ -104,15 +104,21 @@ namespace Stock_App.MVVM.ViewModel
         {
             TotalSum-=SelectedStockItem.Price;
             Price = double.Parse(PriceString);
-            SelectedStockItem.Ticker = Ticker;
-            SelectedStockItem.Price = Price;
             TotalSum+= Price;
-            /*SelectedStockItem.Ticker = Ticker;
-            SelectedStockItem.Price = Price;*/
-            /*_stockItemList.(_stockItemList.IndexOf(selectedStockItem), new StockItem(Ticker, Price));*/
             _stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
         }
 
-        public double TotalSum { get; set; }
+        private double totalSum;
+
+        public double TotalSum
+        {
+            get { return totalSum; }
+            set 
+            {
+                totalSum = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
