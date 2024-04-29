@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Stock_App.Core;
+﻿using Stock_App.Core;
 using Stock_App.MVVM.Model;
 using System;
 using System.Collections.Generic;
@@ -20,23 +19,27 @@ namespace Stock_App.MVVM.ViewModel
 
     public class PortoflioViewModel : Core.ViewModel
     {
-        private readonly ObservableCollection<StockItem> _stockItemList;
-        public IEnumerable<StockItem> StockItemList => _stockItemList;
+        private readonly ObservableCollection<StockItemDB> _stockItemList;
+        public IEnumerable<StockItemDB> StockItemList => _stockItemList;
         
 
         public PortoflioViewModel()
         {
-            _stockItemList = new ObservableCollection<StockItem>();
-            _stockItemList.Add(new StockItem("AAPL", 12.36));
-            _stockItemList.Add(new StockItem("MSFT", 22.17));
-            _stockItemList.Add(new StockItem("NVDA", 112.36));
-            TotalSum = 0;
-            foreach (StockItem stockItem in _stockItemList) 
+            _stockItemList = new ObservableCollection<StockItemDB>();
+            using(var context = new StockContext())
+            {
+                foreach (var item in context.Stocks.ToList())
+                {
+                    _stockItemList.Add(item);
+                }
+            }
+/*            TotalSum = 0;
+            foreach (StockItemDB stockItem in _stockItemList) 
             {
                 TotalSum += stockItem.Price;
-            }
+            }*/
         }
-
+        /*
         private StockItem selectedStockItem;
         public StockItem SelectedStockItem
         {
@@ -148,6 +151,6 @@ namespace Stock_App.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        */
     }
 }
