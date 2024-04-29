@@ -37,15 +37,23 @@ namespace Stock_App
             string connectionString = "Data Source=StockApp.db";
             _stockAppDbContextFactory = new StockAppDbContextFactory(
                 new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
-            _getAllStockItemsQuery = new GetAllStockItemsQuery(_stockAppDbContextFactory);
+/*            _getAllStockItemsQuery = new GetAllStockItemsQuery(_stockAppDbContextFactory);
             _createStockItemCommand = new CreateStockItemCommand(_stockAppDbContextFactory);
             _updateStockItemCommand = new UpdateStockItemCommand(_stockAppDbContextFactory);
             _deleteStockItemCommand = new DeleteStockItemCommand(_stockAppDbContextFactory);
             _stockItemsStore = new StockItemsStore(_getAllStockItemsQuery, _createStockItemCommand, _updateStockItemCommand, _deleteStockItemCommand);
-            _selectedStockItemStore = new SelectedStockItemStore();
+            _selectedStockItemStore = new SelectedStockItemStore();*/
 
 
             IServiceCollection services = new ServiceCollection();
+
+            services.AddSingleton<IGetAllStockItemsQuery, GetAllStockItemsQuery>();
+            services.AddSingleton<ICreateStockItemCommand, CreateStockItemCommand>();
+            services.AddSingleton<IUpdateStockItemCommand, UpdateStockItemCommand>();
+            services.AddSingleton<IDeleteStockItemCommand, DeleteStockItemCommand>();
+            services.AddSingleton<StockItemsStore>();
+            services.AddSingleton<SelectedStockItemStore>();
+
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()

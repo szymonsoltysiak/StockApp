@@ -28,7 +28,7 @@ namespace Stock_App.MVVM.ViewModel
 
     public class PortoflioViewModel : Core.ViewModel
     {
-        public PortoflioViewModel()
+        public PortoflioViewModel(StockItemsStore stockItemStore, SelectedStockItemStore selectedStockItemStore)
         {
             _stockItemList = new ObservableCollection<StockItem>();
             _stockItemList.Add(new StockItem("AAPL", 12.36));
