@@ -48,6 +48,16 @@ namespace Stock_App.Services
             Labels = [];
         }
 
+        public ChartData(string ticker, DateTime start, DateTime end)
+        {
+            Ticker = string.Empty;
+            Values = new ChartValues<double>();
+            Start = DateTime.Now.AddDays(-31);
+            End = DateTime.Now.AddDays(-1);
+            Labels = [];
+            Fill(ticker, start, end);
+        }
+
         public async Task Fill(string ticker, DateTime start, DateTime end)
         {
             Ticker = ticker;
@@ -66,6 +76,8 @@ namespace Stock_App.Services
             }
             Labels = labels.ToArray();
         }
+
+
 
     }
 
