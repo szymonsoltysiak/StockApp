@@ -9,8 +9,8 @@ namespace Stock_App.Domain.Model
 {
     public class StockItem
     {
-        public string Ticker { get; set; }
-        public double Price { get; set; }
+        public string Ticker { get; }
+        public double Price { get; }
 
         public StockItem(string ticker, double price)
         {

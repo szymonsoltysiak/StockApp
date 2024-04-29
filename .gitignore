@@ -3,3 +3,11 @@ Stock_App/obj
 Stock_App/obj/*
 Stock_App/bin
 Stock_App/bin/*
+Stock_App.Domain/obj
+Stock_App.Domain/obj/*
+Stock_App.Domain/bin
+Stock_App.Domain/bin/*
+Stock_App.EntityFramework/obj
+Stock_App.EntityFramework/obj/*
+Stock_App.EntityFramework/bin
+Stock_App.EntityFramework/bin/*

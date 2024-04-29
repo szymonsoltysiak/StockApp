@@ -12,6 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.IO;
 using Microsoft.Win32;
+using Stock_App.Domain.Queries;
+using Stock_App.Domain.Commands;
+using Stock_App.MVVM.Stores;
+using System.Windows.Input;
+using Stock_App.EntityFramework.Commands;
+using Stock_App.EntityFramework.Queries;
+using Stock_App.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -20,10 +28,6 @@ namespace Stock_App.MVVM.ViewModel
 
     public class PortoflioViewModel : Core.ViewModel
     {
-        private readonly ObservableCollection<StockItem> _stockItemList;
-        public IEnumerable<StockItem> StockItemList => _stockItemList;
-        
-
         public PortoflioViewModel()
         {
             _stockItemList = new ObservableCollection<StockItem>();
@@ -31,11 +35,14 @@ namespace Stock_App.MVVM.ViewModel
             _stockItemList.Add(new StockItem("MSFT", 22.17));
             _stockItemList.Add(new StockItem("NVDA", 112.36));
             TotalSum = 0;
-            foreach (StockItem stockItem in _stockItemList) 
+            foreach (StockItem stockItem in _stockItemList)
             {
                 TotalSum += stockItem.Price;
             }
         }
+
+        private readonly ObservableCollection<StockItem> _stockItemList;
+        public IEnumerable<StockItem> StockItemList => _stockItemList;
 
         private StockItem selectedStockItem;
         public StockItem SelectedStockItem
