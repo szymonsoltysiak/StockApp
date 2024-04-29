@@ -14,3 +14,5 @@ C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\obj\Debug\net8.0
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\obj\Debug\net8.0\refint\Stock_App.EntityFramework.dll
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\obj\Debug\net8.0\Stock_App.EntityFramework.pdb
 C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\obj\Debug\net8.0\ref\Stock_App.EntityFramework.dll
+C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\bin\Debug\net8.0\Stock_App.EntityFramework.runtimeconfig.json
+C:\Users\Wojtek\source\repos\StockApp\Stock_App.EntityFramework\obj\Debug\net8.0\Stock_App.EntityFramework.genruntimeconfig.cache
