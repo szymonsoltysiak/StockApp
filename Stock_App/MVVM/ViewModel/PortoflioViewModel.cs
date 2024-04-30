@@ -21,20 +21,21 @@ namespace Stock_App.MVVM.ViewModel
     public class PortoflioViewModel : Core.ViewModel
     {
         StockDB context;
-        public List<StockItemDB> StockItemList;
+        private readonly ObservableCollection<StockItemDB> _stockItemList;
+        public IEnumerable<StockItemDB> StockItemList => _stockItemList;
 
 
 
         public PortoflioViewModel()
         {
             context = new StockDB();
-            StockItemList = new List<StockItemDB>();
+            _stockItemList = new ObservableCollection<StockItemDB>();
             StockItemDB newstock = new StockItemDB("AAPL", 12.34);
             context.Stocks.Add(newstock);
             context.SaveChanges();
             foreach(StockItemDB stock in context.Stocks)
             {
-                StockItemList.Add(stock);
+                _stockItemList.Add(stock);
             }
 
             TotalSum = 0;
@@ -97,7 +98,7 @@ namespace Stock_App.MVVM.ViewModel
         public RelayCommand AddStockItemCommand => new RelayCommand(execute:o => AddStockItem(), canExecute:o => {return true; });
         public RelayCommand DeleteStockItemCommand => new RelayCommand(execute: o => DeleteStockItem(), canExecute: o => SelectedStockItem != null );
         public RelayCommand EditStockItemCommand => new RelayCommand(execute: o => EditStockItem(), canExecute: o => SelectedStockItem != null && IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker));
-        public RelayCommand ExportPortfolioCommand => new RelayCommand(execute: o => ExportPortfolio(), canExecute: o => context.Stocks != null && context.Stocks.Any());
+        public RelayCommand ExportPortfolioCommand => new RelayCommand(execute: o => ExportPortfolio(), canExecute: o => StockItemList != null && StockItemList.Any());
         public void AddStockItem()
         {
             if (IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker))
