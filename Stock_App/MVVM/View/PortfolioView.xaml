@@ -65,7 +65,7 @@
         </Border>
 
         <Border Grid.Row="1" Grid.Column="0" Padding="10">
-            <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding StockItemList}" SelectedItem="{Binding SelectedStockItem}">
+            <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding StockItemsList}" SelectedItem="{Binding SelectedStockItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <parts:StockListItem/>
@@ -86,10 +86,11 @@
                 <TextBlock Grid.Row="0" FontSize="20"
                 Grid.Column="0"
                 FontWeight="Bold"
-                Text="Add or edit selected stock:"  Foreground="White" Grid.ColumnSpan="3" Margin="0,0,0,0"/>      
+                Text="Add or edit selected stock:"  Foreground="White" Grid.ColumnSpan="3" Margin="0,0,0,0"/>
 
                 <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
@@ -137,24 +138,35 @@
                         AutomationProperties.AutomationId="StockPriceTextBox"
                         Text="{Binding PriceString, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
                     </Grid>
-                </Grid>
+                    <Grid Grid.Row="2" Margin="0 10 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Button ToolTip="Add" 
-                    Background="White"
-                    Foreground="#151f2d"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    BorderThickness="0"
-                    Padding="10 5 10 5"
-                    Grid.Row="3"
-                    Command="{Binding AddStockItemCommand}">
-                    <mah:PackIconModern Width="40" Height="40" Kind="Add"/>
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="8"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                        <Button Grid.Column="0"
+                                ToolTip="Add"
+                                Background="White"
+                                Foreground="#151f2d"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                BorderThickness="0"
+                                Padding="10 5 10 5"
+                                Command="{Binding AddStockItemCommand}">
+                            <mah:PackIconModern Width="40" Height="40" Kind="Add"/>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <TextBlock Grid.Column="1"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding ErrorMessage}"
+                                   TextAlignment="Center"
+                                   Foreground="red"/>
+                    </Grid>
+                </Grid>
             </Grid>
         </Border>
 

@@ -15,7 +15,7 @@
             <view:ProfileView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type TypeName=viewModel:PortoflioViewModel}">
+        <DataTemplate DataType="{x:Type TypeName=viewModel:PortfolioViewModel}">
               <view:PortfolioView/>
         </DataTemplate>
         

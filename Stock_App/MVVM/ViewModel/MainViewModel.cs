@@ -12,8 +12,6 @@ namespace Stock_App.MVVM.ViewModel
 {
     public class MainViewModel : Core.ViewModel
     {
-        private readonly SelectedStockItemStore _selectedStockItemStore;
-
         public INavigationService _navigation;
 
         public INavigationService Navigation
@@ -32,11 +30,10 @@ namespace Stock_App.MVVM.ViewModel
         public MainViewModel(INavigationService navService)
         {
             Navigation = navService;
-            _selectedStockItemStore = new SelectedStockItemStore();
             NavigateToHomeCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<HomeViewModel>(); }, canExecute:o => true);
             NavigateToProfileCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<ProfileViewModel>(); }, canExecute:o => true);
-            NavigateToPortfolioCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<PortoflioViewModel>(); }, canExecute:o => true);
-            Navigation.NavigateTo<PortoflioViewModel>();
+            NavigateToPortfolioCommand = new RelayCommand(execute:o => { Navigation.NavigateTo<PortfolioViewModel>(); }, canExecute:o => true);
+            Navigation.NavigateTo<PortfolioViewModel>();
         }
     }   
 }

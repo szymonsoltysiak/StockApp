@@ -10,6 +10,7 @@ using Stock_App.MVVM.Stores;
 using Stock_App.MVVM.View;
 using Stock_App.MVVM.ViewModel;
 using Stock_App.Services;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -23,36 +24,39 @@ namespace Stock_App
     {
         private readonly ServiceProvider _serviceProvider;
 
-        private readonly StockItemsStore _stockItemsStore;
+/*        private readonly StockItemsStore _stockItemsStore;
         private readonly SelectedStockItemStore _selectedStockItemStore;
         private readonly StockAppDbContextFactory _stockAppDbContextFactory;
 
         private readonly ICreateStockItemCommand _createStockItemCommand;
         private readonly IGetAllStockItemsQuery _getAllStockItemsQuery;
         private readonly IUpdateStockItemCommand _updateStockItemCommand;
-        private readonly IDeleteStockItemCommand _deleteStockItemCommand;
+        private readonly IDeleteStockItemCommand _deleteStockItemCommand;*/
 
         public App()
         {
-            string connectionString = "Data Source=StockApp.db";
-            _stockAppDbContextFactory = new StockAppDbContextFactory(
-                new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
-/*            _getAllStockItemsQuery = new GetAllStockItemsQuery(_stockAppDbContextFactory);
-            _createStockItemCommand = new CreateStockItemCommand(_stockAppDbContextFactory);
-            _updateStockItemCommand = new UpdateStockItemCommand(_stockAppDbContextFactory);
-            _deleteStockItemCommand = new DeleteStockItemCommand(_stockAppDbContextFactory);
-            _stockItemsStore = new StockItemsStore(_getAllStockItemsQuery, _createStockItemCommand, _updateStockItemCommand, _deleteStockItemCommand);
-            _selectedStockItemStore = new SelectedStockItemStore();*/
-
-
             IServiceCollection services = new ServiceCollection();
+
+            string connectionString = "Data Source=StockApp.db";
+            services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
+            services.AddSingleton<StockAppDbContextFactory>();
 
             services.AddSingleton<IGetAllStockItemsQuery, GetAllStockItemsQuery>();
             services.AddSingleton<ICreateStockItemCommand, CreateStockItemCommand>();
             services.AddSingleton<IUpdateStockItemCommand, UpdateStockItemCommand>();
             services.AddSingleton<IDeleteStockItemCommand, DeleteStockItemCommand>();
+
             services.AddSingleton<StockItemsStore>();
             services.AddSingleton<SelectedStockItemStore>();
+
+/*            _stockAppDbContextFactory = new StockAppDbContextFactory(
+                new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
+            _getAllStockItemsQuery = new GetAllStockItemsQuery(_stockAppDbContextFactory);
+            _createStockItemCommand = new CreateStockItemCommand(_stockAppDbContextFactory);
+            _updateStockItemCommand = new UpdateStockItemCommand(_stockAppDbContextFactory);
+            _deleteStockItemCommand = new DeleteStockItemCommand(_stockAppDbContextFactory);
+            _stockItemsStore = new StockItemsStore(_getAllStockItemsQuery, _createStockItemCommand, _updateStockItemCommand, _deleteStockItemCommand);
+            _selectedStockItemStore = new SelectedStockItemStore();*/
 
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
@@ -61,7 +65,7 @@ namespace Stock_App
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<ProfileViewModel>();
-            services.AddSingleton<PortoflioViewModel>();
+            services.AddSingleton<PortfolioViewModel>();
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
@@ -71,6 +75,7 @@ namespace Stock_App
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            StockAppDbContextFactory _stockAppDbContextFactory = _serviceProvider.GetRequiredService<StockAppDbContextFactory>();
             using (StockAppDbContext context = _stockAppDbContextFactory.Create())
             {
                 context.Database.Migrate();

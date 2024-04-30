@@ -16,6 +16,14 @@ namespace Stock_App.MVVM.Stores
         private readonly IUpdateStockItemCommand _updateStockItemCommand;
         private readonly IDeleteStockItemCommand _deleteStockItemCommand;
 
+        private readonly List<StockItem> _stockItems;
+        public IEnumerable<StockItem> StockItems => _stockItems;
+
+        public event Action StockItemsLoaded;
+        public event Action<StockItem> StockItemAdded;
+        public event Action<StockItem> StockItemUpdated;
+        public event Action<String> StockItemDeleted;
+
         public StockItemsStore(IGetAllStockItemsQuery getAllStockItemsQuery,
             ICreateStockItemCommand createStockItemCommand,
             IUpdateStockItemCommand updateStockItemCommand,
@@ -25,21 +33,49 @@ namespace Stock_App.MVVM.Stores
             _getAllStockItemsQuery = getAllStockItemsQuery;
             _updateStockItemCommand = updateStockItemCommand;
             _deleteStockItemCommand = deleteStockItemCommand;
+
+            _stockItems = new List<StockItem>();
         }
 
-        public event Action<StockItem> StockItemAdded;
-        public event Action<StockItem> StockItemUpdated;
+        public async Task Load() 
+        {
+            IEnumerable<StockItem> stockItems = await _getAllStockItemsQuery.Execute();
+            _stockItems.Clear();
+            _stockItems.AddRange(stockItems);
+            StockItemsLoaded?.Invoke();
+        }
 
         public async Task Add(StockItem stockItem)
         {
             await _createStockItemCommand.Execute(stockItem);
+            _stockItems.Add(stockItem);
             StockItemAdded?.Invoke(stockItem);
         }
 
         public async Task Update(StockItem stockItem)
         {
             await _updateStockItemCommand.Execute(stockItem);
+            int foundIndex = _stockItems.FindIndex(x => x?.Ticker == stockItem.Ticker);
+            
+            if (foundIndex != -1)
+            {
+                _stockItems[foundIndex] = stockItem;
+            } 
+            else
+            {
+                _stockItems.Add(stockItem);
+            }
+                
             StockItemUpdated?.Invoke(stockItem);
+        }
+
+        public async Task Delete(string ticker)
+        {
+            await _deleteStockItemCommand.Execute(ticker);
+
+            _stockItems.RemoveAll(x => x.Ticker == ticker);
+
+            StockItemDeleted?.Invoke(ticker);
         }
     }
 }
