@@ -28,10 +28,16 @@ namespace Stock_App.MVVM.ViewModel
             DownloadStock(tickerList);
 
             ChartDataProvider = new ChartData();
-            string ticker = "AAPL";
-            DateTime start = DateTime.Now.AddDays(-31);
+            DateTime start = DateTime.Now.AddDays(-51);
             DateTime end = DateTime.Now.AddDays(-1);
-            DownloadChartData(ticker, start, end);
+            DownloadChartData(tickerList[0], start, end);
+
+            ChartDataProviderList = new List<ChartData>();
+            foreach (string ticker in tickerList)
+            {
+                ChartData data = new ChartData(ticker, start, end);
+                ChartDataProviderList.Add(data);
+            }
         }
 
         private PopularStocks _stocks;
@@ -79,6 +85,29 @@ namespace Stock_App.MVVM.ViewModel
             set
             {
                 _newsClient = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Stock selectedStock;
+        public Stock SelectedStock
+        {
+            get { return selectedStock; }
+            set
+            {
+                selectedStock = value;
+                ChartDataProvider = ChartDataProviderList.Find(stock => stock.Ticker == selectedStock.Ticker);
+                OnPropertyChanged();
+            }
+        }
+
+        private List<ChartData> chartDataProviderList;
+        public List<ChartData> ChartDataProviderList
+        {
+            get { return chartDataProviderList; }
+            set
+            {
+                chartDataProviderList = value;
                 OnPropertyChanged();
             }
         }

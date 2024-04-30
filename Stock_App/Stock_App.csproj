@@ -25,4 +25,8 @@
     <PackageReference Include="YahooFinanceApi" Version="2.3.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:Stock_App.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Gray">
+             Background="#151f2d">
     <Grid>
-        <TextBlock Text="Profile" Foreground="White"/>
+        <TextBlock Text=".NET Expirence" Foreground="White" HorizontalAlignment="Center" FontSize="50"/>
+        <Image Width="400" Height="400" Source="{Binding Path}" />
     </Grid>
 </UserControl>

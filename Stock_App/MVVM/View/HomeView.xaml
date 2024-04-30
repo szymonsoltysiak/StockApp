@@ -29,9 +29,9 @@
         <Border Grid.Row="2" Grid.Column="0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/> 
-                    <RowDefinition Height="auto"/> 
-                    <RowDefinition Height="auto"/> 
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Margin="0 20 50 0" TextWrapping="Wrap" FontSize="18" Foreground="#eee">
                 <Run Text="1. " />
@@ -55,7 +55,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.Column="1">
-            <ListView Margin="0 20 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Stocks.PopularStockList}">
+            <ListView Margin="0 20 0 0" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Stocks.PopularStockList}" SelectedItem="{Binding SelectedStock}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -100,14 +100,14 @@
             </ListView>
         </Border>
 
-        
+
 
         <Border Grid.Row="3" Grid.Column="0">
-            <TextBlock Text="{Binding ChartDataProvider.Ticker}" Foreground="White" FontSize="25"/>
+            <TextBlock Text="{Binding SelectedStock.Ticker}" Foreground="White" FontSize="25"/>
         </Border>
 
         <Border Grid.Row="4" Grid.ColumnSpan="2">
-            
+
             <lvc:CartesianChart LegendLocation="None" Margin="0 50 0 0">
                 <lvc:CartesianChart.DataTooltip>
                     <lvc:DefaultTooltip Background="#101a28" Foreground="#d5e2ff"/>

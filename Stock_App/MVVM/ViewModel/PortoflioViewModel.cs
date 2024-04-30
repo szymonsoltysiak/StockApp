@@ -122,12 +122,12 @@ namespace Stock_App.MVVM.ViewModel
             TotalSum -= SelectedStockItem.Price;
             Price = double.Parse(PriceString);
             TotalSum += Price;
-            var stockitem = context.Stocks.First(x => x.ID == SelectedStockItem.ID);
-            stockitem.Ticker= Ticker;
-            stockitem.Price= Price;
+            context.Stocks.Remove(SelectedStockItem);
+            StockItemDB newstock = new StockItemDB(Ticker, Price);
+            context.Stocks.Add(newstock);
             context.SaveChanges();
-            _stockItemList[_stockItemList.IndexOf(selectedStockItem)].Ticker = Ticker;
-            _stockItemList[_stockItemList.IndexOf(selectedStockItem)].Price = Price;
+            _stockItemList[_stockItemList.IndexOf(selectedStockItem)] = newstock;
+            OnPropertyChanged();
         }
 
             private void ExportPortfolio()
