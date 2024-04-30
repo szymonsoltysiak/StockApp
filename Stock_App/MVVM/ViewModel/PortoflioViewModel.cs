@@ -119,16 +119,18 @@ namespace Stock_App.MVVM.ViewModel
 
         private void EditStockItem()
         {
-            TotalSum-=SelectedStockItem.Price;
+            TotalSum -= SelectedStockItem.Price;
             Price = double.Parse(PriceString);
-            TotalSum+= Price;
-            var entity = context.Stocks.FirstOrDefault(item => SelectedStockItem.ID == ID);
-
-            context.Stocks.Entry(SelectedStockItem).Property(p)
-            //_stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
+            TotalSum += Price;
+            var stockitem = context.Stocks.First(x => x.ID == SelectedStockItem.ID);
+            stockitem.Ticker= Ticker;
+            stockitem.Price= Price;
+            context.SaveChanges();
+            _stockItemList[_stockItemList.IndexOf(selectedStockItem)].Ticker = Ticker;
+            _stockItemList[_stockItemList.IndexOf(selectedStockItem)].Price = Price;
         }
 
-        private void ExportPortfolio()
+            private void ExportPortfolio()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             string filter = "CSV file (*.csv)|*.csv";
@@ -142,12 +144,12 @@ namespace Stock_App.MVVM.ViewModel
                 StreamWriter writer = new StreamWriter(filter);
                 writer.WriteLine("Ticker,Price");
 
-                /*foreach (StockItem stockItem in StockItemList)
+                foreach (StockItemDB stockItem in StockItemList)
                 {
                     writer.WriteLine($"{stockItem.Ticker},{stockItem.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)}");
                 }
                 writer.WriteLine($"Total Sum,{TotalSum.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)}");
-                writer.Close();*/
+                writer.Close();
             }
         }
 

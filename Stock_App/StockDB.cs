@@ -18,6 +18,8 @@ namespace Stock_App
         public string Ticker { get; set; }
         public double Price { get; set; }
 
+        public StockItemDB() { }
+
         public StockItemDB(string ticker, double price)
         {
             Ticker = ticker;
