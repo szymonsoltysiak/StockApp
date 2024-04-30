@@ -30,9 +30,7 @@ namespace Stock_App.MVVM.ViewModel
         {
             context = new StockDB();
             _stockItemList = new ObservableCollection<StockItemDB>();
-            StockItemDB newstock = new StockItemDB("AAPL", 12.34);
-            context.Stocks.Add(newstock);
-            context.SaveChanges();
+
             foreach(StockItemDB stock in context.Stocks)
             {
                 _stockItemList.Add(stock);
@@ -45,8 +43,8 @@ namespace Stock_App.MVVM.ViewModel
             }
         }
 
-        private StockItem selectedStockItem;
-        public StockItem SelectedStockItem
+        private StockItemDB selectedStockItem;
+        public StockItemDB SelectedStockItem
         {
             get { return selectedStockItem; }
             set 
@@ -104,14 +102,19 @@ namespace Stock_App.MVVM.ViewModel
             if (IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker))
             {
                 Price = double.Parse(PriceString);
-                //_stockItemList.Add(new StockItem(Ticker, Price));
+                StockItemDB newstock = new StockItemDB(Ticker, Price);
+                context.Stocks.Add(newstock);
+                context.SaveChanges();
+                _stockItemList.Add(newstock);
                 TotalSum += Price;
             }
         }
         private void DeleteStockItem()
         {
             TotalSum -= SelectedStockItem.Price;
-            //_stockItemList.Remove(SelectedStockItem);
+            context.Stocks.Remove(SelectedStockItem);
+            context.SaveChanges();
+            _stockItemList.Remove(SelectedStockItem);
         }
 
         private void EditStockItem()
@@ -119,6 +122,9 @@ namespace Stock_App.MVVM.ViewModel
             TotalSum-=SelectedStockItem.Price;
             Price = double.Parse(PriceString);
             TotalSum+= Price;
+            var entity = context.Stocks.FirstOrDefault(item => SelectedStockItem.ID == ID);
+
+            context.Stocks.Entry(SelectedStockItem).Property(p)
             //_stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
         }
 
