@@ -20,21 +20,28 @@ namespace Stock_App.MVVM.ViewModel
 
     public class PortoflioViewModel : Core.ViewModel
     {
-        private readonly ObservableCollection<StockItem> _stockItemList;
-        public IEnumerable<StockItem> StockItemList => _stockItemList;
-        
+        StockDB context;
+        public List<StockItemDB> StockItemList;
+
+
 
         public PortoflioViewModel()
         {
-            _stockItemList = new ObservableCollection<StockItem>();
-            _stockItemList.Add(new StockItem("AAPL", 12.36));
-            _stockItemList.Add(new StockItem("MSFT", 22.17));
-            _stockItemList.Add(new StockItem("NVDA", 112.36));
+            context = new StockDB();
+            StockItemList = new List<StockItemDB>();
+            StockItemDB newstock = new StockItemDB(123, "AAPL", 12.34);
+            context.Stocks.Add(newstock);
+            context.SaveChanges();
+            foreach(StockItemDB stock in context.Stocks)
+            {
+                StockItemList.Add(stock);
+            }
+
             TotalSum = 0;
-            foreach (StockItem stockItem in _stockItemList) 
+            /*foreach (StockItem stockItem in _stockItemList) 
             {
                 TotalSum += stockItem.Price;
-            }
+            }*/
         }
 
         private StockItem selectedStockItem;
@@ -90,20 +97,20 @@ namespace Stock_App.MVVM.ViewModel
         public RelayCommand AddStockItemCommand => new RelayCommand(execute:o => AddStockItem(), canExecute:o => {return true; });
         public RelayCommand DeleteStockItemCommand => new RelayCommand(execute: o => DeleteStockItem(), canExecute: o => SelectedStockItem != null );
         public RelayCommand EditStockItemCommand => new RelayCommand(execute: o => EditStockItem(), canExecute: o => SelectedStockItem != null && IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker));
-        public RelayCommand ExportPortfolioCommand => new RelayCommand(execute: o => ExportPortfolio(), canExecute: o => StockItemList != null && StockItemList.Any());
+        public RelayCommand ExportPortfolioCommand => new RelayCommand(execute: o => ExportPortfolio(), canExecute: o => context.Stocks != null && context.Stocks.Any());
         public void AddStockItem()
         {
             if (IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker))
             {
                 Price = double.Parse(PriceString);
-                _stockItemList.Add(new StockItem(Ticker, Price));
+                //_stockItemList.Add(new StockItem(Ticker, Price));
                 TotalSum += Price;
             }
         }
         private void DeleteStockItem()
         {
             TotalSum -= SelectedStockItem.Price;
-            _stockItemList.Remove(SelectedStockItem);
+            //_stockItemList.Remove(SelectedStockItem);
         }
 
         private void EditStockItem()
@@ -111,7 +118,7 @@ namespace Stock_App.MVVM.ViewModel
             TotalSum-=SelectedStockItem.Price;
             Price = double.Parse(PriceString);
             TotalSum+= Price;
-            _stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
+            //_stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
         }
 
         private void ExportPortfolio()
@@ -128,12 +135,12 @@ namespace Stock_App.MVVM.ViewModel
                 StreamWriter writer = new StreamWriter(filter);
                 writer.WriteLine("Ticker,Price");
 
-                foreach (StockItem stockItem in StockItemList)
+                /*foreach (StockItem stockItem in StockItemList)
                 {
                     writer.WriteLine($"{stockItem.Ticker},{stockItem.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)}");
                 }
                 writer.WriteLine($"Total Sum,{TotalSum.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)}");
-                writer.Close();
+                writer.Close();*/
             }
         }
 
