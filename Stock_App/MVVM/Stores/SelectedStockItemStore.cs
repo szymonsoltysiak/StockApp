@@ -40,7 +40,7 @@ namespace Stock_App.MVVM.Stores
 
         private void StockItemsStore_StockItemUpdated(StockItem stockItem)
         {
-            if (stockItem.Ticker == SelectedStockItem?.Ticker)
+            if (stockItem.Id == SelectedStockItem?.Id)
             {
                 SelectedStockItem = stockItem;
             }

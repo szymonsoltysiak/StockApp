@@ -3,20 +3,19 @@ using Stock_App.MVVM.Stores;
 using Stock_App.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Stock_App.Core
 {
-    public class EditStockItemCommand : AsyncCommandBase
+    class DeleteStockItemCommand : AsyncCommandBase
     {
         private readonly PortfolioViewModel _portfolioViewModel;
         private readonly StockItemsStore _stockItemsStore;
         private readonly SelectedStockItemStore _selectedStockItemStore;
 
-        public EditStockItemCommand(PortfolioViewModel portfolioViewModel, StockItemsStore stockItemsStore, SelectedStockItemStore selectedStockItemStore)
+        public DeleteStockItemCommand(PortfolioViewModel portfolioViewModel, StockItemsStore stockItemsStore, SelectedStockItemStore selectedStockItemStore)
         {
             _portfolioViewModel = portfolioViewModel;
             _stockItemsStore = stockItemsStore;
@@ -28,29 +27,21 @@ namespace Stock_App.Core
             _portfolioViewModel.ErrorMessage = null;
             if (_selectedStockItemStore.SelectedStockItem == null)
             {
-                _portfolioViewModel.ErrorMessage = "Choose item to update.";
+                _portfolioViewModel.ErrorMessage = "Choose item to delete.";
                 return;
             }
-            ///formViewModel.IsSubmitting = true;
-            double price = double.Parse(_portfolioViewModel.PriceString);
 
-            StockItem stockItem = new StockItem(
-                _selectedStockItemStore.SelectedStockItem.Id,
-            _portfolioViewModel.Ticker,
-            price);
+            Guid toDelete = _selectedStockItemStore.SelectedStockItem.Id;
 
             try
             {
-                await _stockItemsStore.Update(stockItem);
+                await _stockItemsStore.Delete(toDelete);
+                _selectedStockItemStore.SelectedStockItem = null;
             }
             catch (Exception)
             {
-                _portfolioViewModel.ErrorMessage = "Failed to update stock item. Please try again later.";
+                _portfolioViewModel.ErrorMessage = "Failed to delete stock item. Please try again later.";
             }
-            /*finally
-            {
-                formViewModel.IsSubmitting = false;
-            }*/
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Stock_App.EntityFramework.Queries
             {
                 IEnumerable<StockItemDto> stockItemDtos = await context.StockItems.ToListAsync();
 
-                return stockItemDtos.Select(y => new StockItem(y.Ticker, y.Price));
+                return stockItemDtos.Select(x => new StockItem(x.Id, x.Ticker, x.Price));
             }
         }
     }

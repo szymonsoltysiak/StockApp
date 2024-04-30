@@ -4,6 +4,7 @@ using Stock_App.MVVM.View;
 using Stock_App.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,10 @@ namespace Stock_App.Core
         public override async Task ExecuteAsync(object parameter)
         {
             _portfolioViewModel.ErrorMessage = null;
+            double price = double.Parse(_portfolioViewModel.PriceString);
 
             StockItem stockItem = new StockItem(
-            _portfolioViewModel.Ticker,
-            _portfolioViewModel.Price);
+            Guid.NewGuid(), _portfolioViewModel.Ticker, price);
 
             try
             {

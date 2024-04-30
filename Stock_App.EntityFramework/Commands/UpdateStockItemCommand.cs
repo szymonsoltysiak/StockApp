@@ -18,14 +18,15 @@ namespace Stock_App.EntityFramework.Commands
             _contextFactory = contextFactory;
         }
 
-        public async Task Execute(StockItem itemStock)
+        public async Task Execute(StockItem stockItem)
         {
             using (StockAppDbContext context = _contextFactory.Create())
             {
                 StockItemDto stockItemDto = new StockItemDto()
                 {
-                    Ticker = itemStock.Ticker,
-                    Price = itemStock.Price,
+                    Id = stockItem.Id,
+                    Ticker = stockItem.Ticker,
+                    Price = stockItem.Price,
                 };
                 context.StockItems.Update(stockItemDto);
                 await context.SaveChangesAsync();

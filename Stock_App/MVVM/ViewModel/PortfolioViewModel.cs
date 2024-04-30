@@ -39,7 +39,7 @@ namespace Stock_App.MVVM.ViewModel
         {
             get
             {
-                return _stockItemsList.FirstOrDefault(x => x?.Ticker == _selectedStockItemStore.SelectedStockItem?.Ticker);
+                return _stockItemsList.FirstOrDefault(x => x?.Id == _selectedStockItemStore.SelectedStockItem?.Id);
             }
             set
             {
@@ -49,9 +49,13 @@ namespace Stock_App.MVVM.ViewModel
         }
         public ICommand LoadStockItemsCommand { get; }
         public ICommand AddStockItemCommand { get; }
+        public ICommand EditStockItemCommand { get; }
+        public ICommand DeleteStockItemCommand { get; }
 
         public PortfolioViewModel(StockItemsStore stockItemsStore, SelectedStockItemStore selectedStockItemStore)
         {
+            TotalSum = 0;
+
             _stockItemsStore = stockItemsStore;
             _selectedStockItemStore = selectedStockItemStore;
             _stockItemsList = new ObservableCollection<StockItem>();
@@ -60,22 +64,22 @@ namespace Stock_App.MVVM.ViewModel
 
             _stockItemsStore.StockItemsLoaded += StockItemsStore_StockItemsLoaded;
             _stockItemsStore.StockItemAdded += StockItemsStore_StockItemAdded;
-            /*_stockItemsStore.StockItemUpdated += StockItemsStore_StockItemUpdated;
-            _stockItemsStore.StockItemDeleted += StockItemsStore_StockItemDeleted;*/
+            _stockItemsStore.StockItemUpdated += StockItemsStore_StockItemUpdated;
+            _stockItemsStore.StockItemDeleted += StockItemsStore_StockItemDeleted;
 
             _stockItemsList.CollectionChanged += StockItemsList_CollectionChanged;
 
             LoadStockItemsCommand = new LoadStockItemsCommand(this, stockItemsStore);
             AddStockItemCommand = new AddStockItemCommand(this, stockItemsStore);
+            DeleteStockItemCommand = new Core.DeleteStockItemCommand(this, stockItemsStore, selectedStockItemStore);
+            EditStockItemCommand = new EditStockItemCommand(this, stockItemsStore, selectedStockItemStore);
 
-            /*_stockItemList.Add(new StockItem("AAPL", 12.36));
-            _stockItemList.Add(new StockItem("MSFT", 22.17));
-            _stockItemList.Add(new StockItem("NVDA", 112.36));*/
-            TotalSum = 0;
-            foreach (StockItem stockItem in _stockItemsList)
+            LoadStockItemsCommand.Execute(null);
+
+/*            foreach (StockItem stockItem in _stockItemsList)
             {
                 TotalSum += stockItem.Price;
-            }
+            }*/
         }
 
         private void SelectedStockItemStore_SelectedStockItemChanged()
@@ -101,22 +105,25 @@ namespace Stock_App.MVVM.ViewModel
         private void StockItemsStore_StockItemUpdated(StockItem stockItem)
         {
             StockItem foundStockItem =
-                _stockItemsList.FirstOrDefault(x => x?.Ticker == stockItem.Ticker);
+                _stockItemsList.FirstOrDefault(x => x?.Id == stockItem.Id);
 
             if (foundStockItem != null)
             {
-                foundStockItem = stockItem;
-                OnPropertyChanged(nameof(StockItem));
+                totalSum -= foundStockItem.Price;
+                TotalSum += stockItem.Price;
+                _stockItemsList[_stockItemsList.IndexOf(foundStockItem)] = stockItem;
+                OnPropertyChanged();
             }
         }
 
-        private void StockItemsStore_StockItemDeleted(string ticker)
+        private void StockItemsStore_StockItemDeleted(Guid id)
         {
-            StockItem stockItem = _stockItemsList.FirstOrDefault(x => x?.Ticker == ticker);
+            StockItem stockItem = _stockItemsList.FirstOrDefault(x => x?.Id == id);
 
             if (stockItem != null)
             {
                 _stockItemsList.Remove(stockItem);
+                TotalSum -= stockItem.Price;
             }
         }
 
@@ -128,12 +135,8 @@ namespace Stock_App.MVVM.ViewModel
         private void AddStockItem(StockItem stockItem)
         {
             _stockItemsList.Add(stockItem);
+            TotalSum += stockItem.Price;
         }
-
-        /// <summary>
-        /// to update down from here
-        /// </summary>
-
 
         private string ticker;
         public string Ticker
@@ -149,16 +152,6 @@ namespace Stock_App.MVVM.ViewModel
             }
         }
 
-        public static bool IsDoubleRealNumber(string valueToTest)
-        {
-            if (double.TryParse(valueToTest, out double d) && !Double.IsNaN(d) && !Double.IsInfinity(d))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         private string priceString;
         public string PriceString
         {
@@ -172,36 +165,7 @@ namespace Stock_App.MVVM.ViewModel
                 }
             }
         }
-
-        public double Price { get; set; }
-
-        ///public RelayCommand AddStockItemCommand => new RelayCommand(execute:o => AddStockItem(), canExecute:o => {return true; });
-       /// public RelayCommand DeleteStockItemCommand => new RelayCommand(execute: o => DeleteStockItem(), canExecute: o => SelectedStockItem != null );
-        ///public RelayCommand EditStockItemCommand => new RelayCommand(execute: o => EditStockItem(), canExecute: o => SelectedStockItem != null && IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker));
         public RelayCommand ExportPortfolioCommand => new RelayCommand(execute: o => ExportPortfolio(), canExecute: o => StockItemsList != null && StockItemsList.Any());
-/*        public void AddStockItem()
-        {
-            if (IsDoubleRealNumber(PriceString) && !String.IsNullOrEmpty(Ticker))
-            {
-                Price = double.Parse(PriceString);
-                _stockItemList.Add(new StockItem(Ticker, Price));
-                TotalSum += Price;
-            }
-        }*/
-/*        private void DeleteStockItem()
-        {
-            TotalSum -= SelectedStockItem.Price;
-            _stockItemList.Remove(SelectedStockItem);
-        }*/
-
-/*        private void EditStockItem()
-        {
-            TotalSum-=SelectedStockItem.Price;
-            Price = double.Parse(PriceString);
-            TotalSum+= Price;
-            _stockItemList[_stockItemList.IndexOf(selectedStockItem)] = new StockItem(Ticker, Price);
-        }*/
-
         private void ExportPortfolio()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();

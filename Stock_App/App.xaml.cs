@@ -44,7 +44,7 @@ namespace Stock_App
             services.AddSingleton<IGetAllStockItemsQuery, GetAllStockItemsQuery>();
             services.AddSingleton<ICreateStockItemCommand, CreateStockItemCommand>();
             services.AddSingleton<IUpdateStockItemCommand, UpdateStockItemCommand>();
-            services.AddSingleton<IDeleteStockItemCommand, DeleteStockItemCommand>();
+            services.AddSingleton<IDeleteStockItemCommand, EntityFramework.Commands.DeleteStockItemCommand>();
 
             services.AddSingleton<StockItemsStore>();
             services.AddSingleton<SelectedStockItemStore>();

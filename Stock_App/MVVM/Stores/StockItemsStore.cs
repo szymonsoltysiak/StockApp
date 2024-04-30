@@ -22,7 +22,7 @@ namespace Stock_App.MVVM.Stores
         public event Action StockItemsLoaded;
         public event Action<StockItem> StockItemAdded;
         public event Action<StockItem> StockItemUpdated;
-        public event Action<String> StockItemDeleted;
+        public event Action<Guid> StockItemDeleted;
 
         public StockItemsStore(IGetAllStockItemsQuery getAllStockItemsQuery,
             ICreateStockItemCommand createStockItemCommand,
@@ -55,7 +55,7 @@ namespace Stock_App.MVVM.Stores
         public async Task Update(StockItem stockItem)
         {
             await _updateStockItemCommand.Execute(stockItem);
-            int foundIndex = _stockItems.FindIndex(x => x?.Ticker == stockItem.Ticker);
+            int foundIndex = _stockItems.FindIndex(x => x?.Id == stockItem.Id);
             
             if (foundIndex != -1)
             {
@@ -69,13 +69,13 @@ namespace Stock_App.MVVM.Stores
             StockItemUpdated?.Invoke(stockItem);
         }
 
-        public async Task Delete(string ticker)
+        public async Task Delete(Guid id)
         {
-            await _deleteStockItemCommand.Execute(ticker);
+            await _deleteStockItemCommand.Execute(id);
 
-            _stockItems.RemoveAll(x => x.Ticker == ticker);
+            _stockItems.RemoveAll(x => x.Id == id);
 
-            StockItemDeleted?.Invoke(ticker);
+            StockItemDeleted?.Invoke(id);
         }
     }
 }

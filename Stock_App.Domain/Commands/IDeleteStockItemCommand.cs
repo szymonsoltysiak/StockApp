@@ -8,6 +8,6 @@ namespace Stock_App.Domain.Commands
 {
     public interface IDeleteStockItemCommand
     {
-        Task Execute(string Ticker);
+        Task Execute(Guid id);
     }
 }

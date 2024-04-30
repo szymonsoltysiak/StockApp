@@ -18,13 +18,13 @@ namespace Stock_App.EntityFramework.Commands
             _contextFactory = contextFactory;
         }
 
-        public async Task Execute(string ticker)
+        public async Task Execute(Guid id)
         {
             using (StockAppDbContext context = _contextFactory.Create())
             {
                 StockItemDto stockItemDto = new StockItemDto()
                 {
-                    Ticker = ticker,
+                    Id = id,
                 };
                 context.StockItems.Remove(stockItemDto);
                 await context.SaveChangesAsync();
