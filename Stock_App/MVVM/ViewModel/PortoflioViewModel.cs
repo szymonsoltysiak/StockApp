@@ -29,7 +29,7 @@ namespace Stock_App.MVVM.ViewModel
         {
             context = new StockDB();
             StockItemList = new List<StockItemDB>();
-            StockItemDB newstock = new StockItemDB(123, "AAPL", 12.34);
+            StockItemDB newstock = new StockItemDB("AAPL", 12.34);
             context.Stocks.Add(newstock);
             context.SaveChanges();
             foreach(StockItemDB stock in context.Stocks)
@@ -38,10 +38,10 @@ namespace Stock_App.MVVM.ViewModel
             }
 
             TotalSum = 0;
-            /*foreach (StockItem stockItem in _stockItemList) 
+            foreach (StockItemDB stockItem in context.Stocks) 
             {
                 TotalSum += stockItem.Price;
-            }*/
+            }
         }
 
         private StockItem selectedStockItem;
