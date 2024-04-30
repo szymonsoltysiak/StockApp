@@ -75,11 +75,6 @@ namespace Stock_App.MVVM.ViewModel
             EditStockItemCommand = new EditStockItemCommand(this, stockItemsStore, selectedStockItemStore);
 
             LoadStockItemsCommand.Execute(null);
-
-/*            foreach (StockItem stockItem in _stockItemsList)
-            {
-                TotalSum += stockItem.Price;
-            }*/
         }
 
         private void SelectedStockItemStore_SelectedStockItemChanged()

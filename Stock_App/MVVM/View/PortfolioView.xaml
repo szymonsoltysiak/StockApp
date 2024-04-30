@@ -29,38 +29,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button 
-                    Grid.Column="0" ToolTip="Delete" 
-                    Background="White"
-                    Foreground="#151f2d"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    BorderThickness="0"
-                    Padding="10 5 10 5"
-                    Command="{Binding EditStockItemCommand}">
-                    <mah:PackIconModern Width="40" Height="40" Kind="Edit"/>
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="8"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-
-                <Button Grid.Column="1" ToolTip="Delete" 
-                    Background="White"
-                    Foreground="#151f2d"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    BorderThickness="0"
-                    Padding="10 5 10 5"
-                    Command="{Binding DeleteStockItemCommand}">
-                    <mah:PackIconModern Width="40" Height="40" Kind="Delete"/>
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="8"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
             </Grid>
         </Border>
 
@@ -90,6 +58,7 @@
 
                 <Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -142,6 +111,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <Button Grid.Column="0"
@@ -160,12 +130,43 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <TextBlock Grid.Column="1"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding ErrorMessage}"
-                                   TextAlignment="Center"
-                                   Foreground="red"/>
+                        <Button 
+                            Grid.Column="1" ToolTip="Delete" 
+                            Background="White"
+                            Foreground="#151f2d"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            Padding="10 5 10 5"
+                            Command="{Binding EditStockItemCommand}">
+                            <mah:PackIconModern Width="40" Height="40" Kind="Edit"/>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Grid.Column="2" ToolTip="Delete" 
+                                Background="White"
+                                Foreground="#151f2d"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                BorderThickness="0"
+                                Padding="10 5 10 5"
+                                Command="{Binding DeleteStockItemCommand}">
+                            <mah:PackIconModern Width="40" Height="40" Kind="Delete"/>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </Grid>
+                    <TextBlock Grid.Row="3"
+                               VerticalAlignment="Center"
+                               Text="{Binding ErrorMessage}"
+                               TextAlignment="Center"
+                               Foreground="red"/>
                 </Grid>
             </Grid>
         </Border>

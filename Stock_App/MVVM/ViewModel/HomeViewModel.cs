@@ -58,6 +58,11 @@ namespace Stock_App.MVVM.ViewModel
         public async void DownloadNews()
         {
             await NewsClient.GetTopHeadlinesAsync();
+/*            int[] existsIndex = new int[3];
+            for (int i = 0; i<=3;)
+            {
+
+            }*/
         }
 
         public PopularStocks Stocks

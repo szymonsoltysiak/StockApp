@@ -45,6 +45,10 @@ namespace Stock_App.Services
             ApiKey = apiKey;
             Response = new NewsApiResponse();
         }
+        bool isNotRemoved(Article article)
+        {
+            return article.Title != "[Removed]";
+        }
 
         public async Task GetTopHeadlinesAsync()
         {
@@ -65,6 +69,7 @@ namespace Stock_App.Services
                         string jsonResponse = await response.Content.ReadAsStringAsync();
 
                         Response = JsonConvert.DeserializeObject<NewsApiResponse>(jsonResponse);
+                        Response.Articles = Array.FindAll(Response.Articles, isNotRemoved).ToArray();
                     }
                     else
                     {

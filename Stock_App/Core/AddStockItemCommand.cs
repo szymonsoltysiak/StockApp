@@ -25,7 +25,22 @@ namespace Stock_App.Core
         public override async Task ExecuteAsync(object parameter)
         {
             _portfolioViewModel.ErrorMessage = null;
+            if(_portfolioViewModel.Ticker == null || _portfolioViewModel.Ticker == "")
+            {
+                _portfolioViewModel.ErrorMessage = "Input correct name before adding.";
+                return;
+            }
+            try
+            {
+                double.Parse(_portfolioViewModel.PriceString);
+            }
+            catch (Exception)
+            {
+                _portfolioViewModel.ErrorMessage = "Input correct price before adding.";
+                return;
+            }
             double price = double.Parse(_portfolioViewModel.PriceString);
+            
 
             StockItem stockItem = new StockItem(
             Guid.NewGuid(), _portfolioViewModel.Ticker, price);
@@ -38,10 +53,6 @@ namespace Stock_App.Core
             {
                 _portfolioViewModel.ErrorMessage = "Failed to add stock item. Please try again later.";
             }
-            /*finally
-            {
-                ///.IsSubmitting = false;
-            }*/
         }
     }
 }

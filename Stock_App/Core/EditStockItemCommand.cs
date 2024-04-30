@@ -47,10 +47,6 @@ namespace Stock_App.Core
             {
                 _portfolioViewModel.ErrorMessage = "Failed to update stock item. Please try again later.";
             }
-            /*finally
-            {
-                formViewModel.IsSubmitting = false;
-            }*/
         }
     }
 }
